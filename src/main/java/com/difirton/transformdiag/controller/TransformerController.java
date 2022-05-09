@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 @RequestMapping("/transformers")
 public class TransformerController {
@@ -21,13 +20,13 @@ public class TransformerController {
     }
 
     @GetMapping("/add")
-    public String add(@ModelAttribute("transformer") Transformer newTransformer) {
+    public String add(@ModelAttribute("transformer") Transformer transformer) {
         return "add";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("transformer") Transformer newTransformer) {
-        repository.save(newTransformer);
+    public String create(@ModelAttribute("transformer") Transformer transformer) {
+        repository.save(transformer);
         return "redirect:/transformers";
     }
 
@@ -44,8 +43,9 @@ public class TransformerController {
     }
 
     @PatchMapping("/{id}")
-    String update(@ModelAttribute("transformer") Transformer updateTransformer, @PathVariable Long id) {
-        repository.save(updateTransformer);
+    String update(@ModelAttribute("transformer") Transformer transformer,
+                  @PathVariable Long id) {
+        repository.save(transformer);
         return "redirect:/transformers/{id}";
     }
 

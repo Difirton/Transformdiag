@@ -25,51 +25,59 @@ public class TransformerController {
         return "transformers";
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PatchMapping("/transformers")
-    public Transformer newTransformer(@RequestBody Transformer newTransformer) {
-        return repository.save(newTransformer);
+    @GetMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("transformer", new Transformer());
+        return "add";
     }
 
-    @GetMapping("/{id}")
-    public Transformer findOne(@PathVariable Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new TransformerNotFoundException(id));
+//    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
+    public String create(@ModelAttribute("transformer") Transformer newTransformer) {
+        System.out.println(newTransformer.toString());
+        repository.save(newTransformer);
+        return "redirect:/transformers";
     }
 
-    @PutMapping("/{id}")
-    public Transformer saveOrUpdate(@RequestBody Transformer newTransformer, @PathVariable Long id) {
-        return repository.findById(id)
-                .map(x -> {
-                    x.setKKS(newTransformer.getKKS());
-                    x.setType(newTransformer.getType());
-                    x.setFactoryNumber(newTransformer.getFactoryNumber());
-                    return repository.save(x);
-                })
-                .orElseGet(() -> {
-                    newTransformer.setId(id);
-                    return repository.save(newTransformer);
-                });
-    }
-
-    @PatchMapping("/{id}")
-    public Transformer path(@RequestBody Map<String, String> update, @PathVariable Long id) {
-        return repository.findById(id)
-                .map(x -> {
-                    String KKS = update.get("KKS");
-                    if (!StringUtils.isEmpty(KKS)) {
-                        x.setKKS(KKS);
-                        return repository.save(x);
-                    } else {
-                        throw new TransformerUnSupportedFieldPatchException(update.keySet());
-                    }
-                }).orElseGet(() -> {
-                    throw new TransformerNotFoundException(id);
-                });
-    }
-
-    @DeleteMapping("/transformers/{id}")
-    void deleteTransformer(@PathVariable Long id) {
-        repository.deleteById(id);
-    }
+//    @GetMapping("/{id}")
+//    Transformer findOne(@PathVariable Long id) {
+//        return repository.findById(id)
+//                .orElseThrow(() -> new TransformerNotFoundException(id));
+//    }
+//
+//    @PutMapping("/{id}")
+//    Transformer saveOrUpdate(@RequestBody Transformer newTransformer, @PathVariable Long id) {
+//        return repository.findById(id)
+//                .map(x -> {
+//                    x.setKKS(newTransformer.getKKS());
+//                    x.setType(newTransformer.getType());
+//                    x.setFactoryNumber(newTransformer.getFactoryNumber());
+//                    return repository.save(x);
+//                })
+//                .orElseGet(() -> {
+//                    newTransformer.setId(id);
+//                    return repository.save(newTransformer);
+//                });
+//    }
+//
+//    @PatchMapping("/{id}")
+//    Transformer path(@RequestBody Map<String, String> update, @PathVariable Long id) {
+//        return repository.findById(id)
+//                .map(x -> {
+//                    String KKS = update.get("KKS");
+//                    if (!StringUtils.isEmpty(KKS)) {
+//                        x.setKKS(KKS);
+//                        return repository.save(x);
+//                    } else {
+//                        throw new TransformerUnSupportedFieldPatchException(update.keySet());
+//                    }
+//                }).orElseGet(() -> {
+//                    throw new TransformerNotFoundException(id);
+//                });
+//    }
+//
+//    @DeleteMapping("{id}")
+//    void deleteTransformer(@PathVariable Long id) {
+//        repository.deleteById(id);
+//    }
 }

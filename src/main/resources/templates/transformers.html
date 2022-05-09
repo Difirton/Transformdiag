@@ -15,20 +15,21 @@
         <tr>
             <th>ID</th>
             <th>KKS</th>
-            <th>Заводской номер</th>
             <th>Тип</th>
+            <th>Заводской номер</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="transformer : ${transformers}">
             <td th:text="${transformer.getId()}"/>
             <td th:text="${transformer.getKKS()}"/>
-            <td th:text="${transformer.getFactoryNumber()}"/>
             <td th:text="${transformer.getType()}"/>
+            <td th:text="${transformer.getFactoryNumber()}"/>
         </tr>
         </tbody>
     </table>
-    <span th:text="${'Всего товаров ' + transformers.size()}"/>
+    <span th:text="${'Всего трансформаторов ' + transformers.size()}"/>
+    <span text>
 </div>
 </body>
 </html>

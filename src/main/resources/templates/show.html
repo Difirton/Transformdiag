@@ -16,31 +16,25 @@
             <th>KKS</th>
             <th>Тип</th>
             <th>Заводской номер</th>
-            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="transformer : ${transformers}">
             <td th:text="${transformer.getKKS()}"/>
             <td th:text="${transformer.getType()}"/>
             <td th:text="${transformer.getFactoryNumber()}"/>
-            <td>
-                <div class="col-sm-6 controls">
-                    <a th:href="@{/transformers/{id}(id=${transformer.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Выбрать</a>
-                </div>
-            </td>
-        </tr>
         </tbody>
     </table>
-    <span th:text="${'Всего трансформаторов ' + transformers.size()}"/>
-    <span text>
-    <br/>
 
     <div class="col-sm-6 controls">
-        <a href="/transformers/add" class="btn btn-info btn-sm active"
-           role="button" aria-pressed="true">Добавить</a>
+        <a th:href="@{/transformers/{id}/edit(id=${transformer.getId()})}" class="btn btn-info btn-sm active"
+           role="button" aria-pressed="true">Редактировать</a>
     </div>
-
+        <br/>
+    <div class="col-sm-6 controls">
+        <form th:method="DELETE" th:action="@{/transformers/{id}(id=${transformer.getId()})}" class="form-horizontal">
+            <input type="submit" value="Удалить" class="btn btn-info btn-sm active">
+        </form>
+    </div>
 </div>
 </body>
 </html>

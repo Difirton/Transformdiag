@@ -2,16 +2,11 @@ package com.difirton.transformdiag.controller;
 
 import com.difirton.transformdiag.entitys.Transformer;
 import com.difirton.transformdiag.repository.TransformerRepository;
-import com.difirton.transformdiag.error.TransformerNotFoundException;
-import com.difirton.transformdiag.error.TransformerUnSupportedFieldPatchException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
 @Controller
 @RequestMapping("/transformers")
@@ -26,58 +21,37 @@ public class TransformerController {
     }
 
     @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("transformer", new Transformer());
+    public String add(@ModelAttribute("transformer") Transformer newTransformer) {
         return "add";
     }
 
-//    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
     public String create(@ModelAttribute("transformer") Transformer newTransformer) {
-        System.out.println(newTransformer.toString());
         repository.save(newTransformer);
         return "redirect:/transformers";
     }
 
-//    @GetMapping("/{id}")
-//    Transformer findOne(@PathVariable Long id) {
-//        return repository.findById(id)
-//                .orElseThrow(() -> new TransformerNotFoundException(id));
-//    }
-//
-//    @PutMapping("/{id}")
-//    Transformer saveOrUpdate(@RequestBody Transformer newTransformer, @PathVariable Long id) {
-//        return repository.findById(id)
-//                .map(x -> {
-//                    x.setKKS(newTransformer.getKKS());
-//                    x.setType(newTransformer.getType());
-//                    x.setFactoryNumber(newTransformer.getFactoryNumber());
-//                    return repository.save(x);
-//                })
-//                .orElseGet(() -> {
-//                    newTransformer.setId(id);
-//                    return repository.save(newTransformer);
-//                });
-//    }
-//
-//    @PatchMapping("/{id}")
-//    Transformer path(@RequestBody Map<String, String> update, @PathVariable Long id) {
-//        return repository.findById(id)
-//                .map(x -> {
-//                    String KKS = update.get("KKS");
-//                    if (!StringUtils.isEmpty(KKS)) {
-//                        x.setKKS(KKS);
-//                        return repository.save(x);
-//                    } else {
-//                        throw new TransformerUnSupportedFieldPatchException(update.keySet());
-//                    }
-//                }).orElseGet(() -> {
-//                    throw new TransformerNotFoundException(id);
-//                });
-//    }
-//
-//    @DeleteMapping("{id}")
-//    void deleteTransformer(@PathVariable Long id) {
-//        repository.deleteById(id);
-//    }
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("transformer", repository.getById(id));
+        return "show";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("transformer", repository.getById(id));
+        return "edit";
+    }
+
+    @PatchMapping("/{id}")
+    String update(@ModelAttribute("transformer") Transformer updateTransformer, @PathVariable Long id) {
+        repository.save(updateTransformer);
+        return "redirect:/transformers/{id}";
+    }
+
+    @DeleteMapping("{id}")
+    String deleteTransformer(@PathVariable("id") Long id) {
+        repository.deleteById(id);
+        return "redirect:/transformers";
+    }
 }

@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <br>
-    <form th:method="POST" th:action="@{/transformers}"
+    <form th:method="PATCH" th:action="@{/transformers/{id}(id=${transformer.getId()})}"
           th:object="${transformer}" class="form-horizontal">
 
         <div style="margin-bottom: 15px" class="input-group">
@@ -30,7 +30,7 @@
 
         <div style="margin-top: 10px" class="form-group">
             <div class="col-sm-6 controls">
-                <button type="submit" class="btn btn-info">Добавить</button>
+                <button type="submit" class="btn btn-primary">Обновить</button>
             </div>
         </div>
     </form>

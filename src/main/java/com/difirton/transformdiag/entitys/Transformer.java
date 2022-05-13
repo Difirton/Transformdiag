@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Data
@@ -12,19 +13,22 @@ import javax.validation.constraints.Size;
 @RequiredArgsConstructor
 public class Transformer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Size(min = 5, message = "KKS should be more than 5 characters")
-    @Column(name = "KKS")
+    @Column(name = "KKS", length = 50)
     private String KKS;
 
-    @NotEmpty(message = "Type should not be empty")
-    @Column(name = "type")
+    @NotBlank(message = "Type should not be empty")
+    @Column(name = "type", length = 50)
     private String type;
 
-    @NotEmpty(message = "Factory number should not be empty")
-    @Column(name = "factory_number")
+    @NotBlank(message = "Factory number should not be empty")
+    @Column(name = "factory_number", length = 50)
     private String factoryNumber;
+
+    @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL)
+    private List<ChromatographicOilAnalysis> chromatographicOilAnalysis = new java.util.ArrayList<>();
 }

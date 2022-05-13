@@ -5,7 +5,11 @@ import com.difirton.transformdiag.repository.TransformerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/transformers")
@@ -25,7 +29,10 @@ public class TransformerController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("transformer") Transformer transformer) {
+    public String create(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "add";
+        }
         repository.save(transformer);
         return "redirect:/transformers";
     }
@@ -43,8 +50,11 @@ public class TransformerController {
     }
 
     @PatchMapping("/{id}")
-    String update(@ModelAttribute("transformer") Transformer transformer,
+    String update(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult,
                   @PathVariable Long id) {
+        if (bindingResult.hasErrors()) {
+            return "edit";
+        }
         repository.save(transformer);
         return "redirect:/transformers/{id}";
     }

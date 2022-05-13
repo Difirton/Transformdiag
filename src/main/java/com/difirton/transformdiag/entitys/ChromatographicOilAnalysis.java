@@ -1,7 +1,9 @@
 package com.difirton.transformdiag.entitys;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -13,16 +15,16 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class ChromatographicOilAnalysis {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "transformer_id")
-    private Transformer transformer;
-
     @Column(name = "date_analysis")
     private Date dateAnalysis;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "transformer_id")
+    private Transformer transformer;
     
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "Should not be empty", integer = 10, fraction = 2)

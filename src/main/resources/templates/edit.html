@@ -16,16 +16,22 @@
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input th:field="*{KKS}" placeholder="Номер KKS" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('KKS')}" th:errorclass="error" th:errors="*{KKS}">
+                Invalid KKSr</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input th:field="*{type}" placeholder="Тип" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('type')}" th:errorclass="error" th:errors="*{type}">
+                Invalid type</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input th:field="*{factoryNumber}" placeholder="Заводской номер" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('factoryNumber')}" th:errorclass="error" th:errors="*{factoryNumber}">
+                Invalid factoryNumber</div>
         </div>
 
         <div style="margin-top: 10px" class="form-group">

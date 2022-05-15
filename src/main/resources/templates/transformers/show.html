@@ -26,6 +26,11 @@
     </table>
 
     <div class="col-sm-6 controls">
+        <a th:href="@{/transformers/{id}/chromatographic-oil-analyzes(id=${transformer.getId()})}" class="btn btn-info btn-sm active"
+           role="button" aria-pressed="true">Результаты измерения ХАРГ</a>
+    </div>
+    <br/>
+    <div class="col-sm-6 controls">
         <a th:href="@{/transformers/{id}/edit(id=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Редактировать</a>
     </div>

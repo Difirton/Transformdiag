@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,42 +17,42 @@ public class TransformerController {
     private TransformerRepository repository;
 
     @GetMapping
-    public String findAll(Model model) {
+    String findAll(Model model) {
         model.addAttribute("transformers", repository.findAll());
-        return "transformers";
+        return "transformers/transformers";
     }
 
     @GetMapping("/add")
-    public String add(@ModelAttribute("transformer") Transformer transformer) {
-        return "add";
+    String add(@ModelAttribute("transformer") Transformer transformer) {
+        return "transformers/add";
     }
 
     @PostMapping()
-    public String create(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult) {
+    String create(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "add";
+            return "transformers/add";
         }
         repository.save(transformer);
         return "redirect:/transformers";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, Model model) {
+    String show(@PathVariable("id") Long id, Model model) {
         model.addAttribute("transformer", repository.getById(id));
-        return "show";
+        return "transformers/show";
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable("id") Long id, Model model) {
+    String edit(@PathVariable("id") Long id, Model model) {
         model.addAttribute("transformer", repository.getById(id));
-        return "edit";
+        return "transformers/edit";
     }
 
     @PatchMapping("/{id}")
     String update(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult,
                   @PathVariable Long id) {
         if (bindingResult.hasErrors()) {
-            return "edit";
+            return "transformers/edit";
         }
         repository.save(transformer);
         return "redirect:/transformers/{id}";

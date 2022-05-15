@@ -3,5 +3,7 @@ package com.difirton.transformdiag.repository;
 import com.difirton.transformdiag.entitys.ChromatographicOilAnalysis;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ChromatographicOilAnalisisRepository extends JpaRepository<ChromatographicOilAnalysis, Long> {
+import java.util.List;
+
+public interface ChromatographicOilAnalysisRepository extends JpaRepository<ChromatographicOilAnalysis, Long> {
 }

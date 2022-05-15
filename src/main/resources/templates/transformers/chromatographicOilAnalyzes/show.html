@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>ХАРГ трансформаторного масла</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Водород (Н2)</th>
+            <th>Оксид углерода (СО)</th>
+            <th>Диоксид углерода (СО2)</th>
+            <th>Метан (СН4)</th>
+            <th>Этан (С2Н6)</th>
+            <th>Этилен (С2Н4)</th>
+            <th>Ацетилен (С2Н2)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="analysis : ${analyzes}">
+            <td th:text="${analysis.getDateAnalysis()}"/>
+            <td th:text="${analysis.getHydrogenGasH2()}"/>
+            <td th:text="${analysis.getCarbonMonoxideCO()}"/>
+            <td th:text="${analysis.getCarbonDioxideCO2()}"/>
+            <td th:text="${analysis.getMethaneCH4()}"/>
+            <td th:text="${analysis.getEthaneC2H6()}"/>
+            <td th:text="${analysis.getEthyleneC2H4()}"/>
+            <td th:text="${analysis.getAcetyleneC2H2()}"/>
+        </tr>
+        </tbody>
+    </table>
+    <div class="col-sm-6 controls">
+        <a th:href="@{/transformers/{id}/chromatographic-oil-analyzes/add(id=${transformerId})}" class="btn btn-info btn-sm active"
+           role="button" aria-pressed="true">Добавить измерение</a>
+    </div>
+</div>
+</body>
+</html>

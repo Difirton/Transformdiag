@@ -15,11 +15,15 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/transformers/{transformerId}/chromatographic-oil-analyzes")
 public class ChromatographicOilAnalysisController {
-    @Autowired
-    ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository;
+
+    private ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository;
+    private TransformerRepository transformerRepository;
 
     @Autowired
-    private TransformerRepository transformerRepository;
+    public ChromatographicOilAnalysisController(ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository, TransformerRepository transformerRepository) {
+        this.chromatographicOilAnalysisRepository = chromatographicOilAnalysisRepository;
+        this.transformerRepository = transformerRepository;
+    }
 
     @GetMapping
     String findAllAnalyzes(Model model, @PathVariable("transformerId") Long transformerId) {
@@ -35,32 +39,30 @@ public class ChromatographicOilAnalysisController {
     }
 
     @PostMapping
-    String create(@Valid @ModelAttribute("analysis") ChromatographicOilAnalysis analysis, BindingResult bindingResult,
+    String create(@Valid @ModelAttribute("analysis") ChromatographicOilAnalysis chromatographicOilAnalysis, BindingResult bindingResult,
                   @PathVariable("transformerId") Long transformerId) {
-        analysis.setTransformer(transformerRepository.getById(transformerId));
+        chromatographicOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
         if (bindingResult.hasErrors()) {
             return "/transformers/chromatographicOilAnalyzes/add";
         }
-        chromatographicOilAnalysisRepository.save(analysis);
+        chromatographicOilAnalysisRepository.save(chromatographicOilAnalysis);
         return "redirect:/transformers/" + transformerId + "/chromatographic-oil-analyzes";
     }
 
-    @GetMapping("/{idAnalysis}/edit")
-    String edit(@PathVariable("idAnalysis") Long idAnalysis, Model model) {
-        model.addAttribute("analysis", chromatographicOilAnalysisRepository.getById(idAnalysis));
+    @GetMapping("/{id}/edit")
+    String edit(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("analysis", chromatographicOilAnalysisRepository.getById(id));
         return "transformers/chromatographicOilAnalyzes/edit";
     }
 
-    @PatchMapping
+    @PatchMapping("{id}")
     String update(@Valid @ModelAttribute("analysis") ChromatographicOilAnalysis analysis, BindingResult bindingResult,
-                  @PathVariable("transformerId") Long transformerId) {
-        System.out.println(analysis.toString());
+                  @PathVariable("transformerId") Long transformerId, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "transformers/edit";
         }
         analysis.setTransformer(transformerRepository.getById(transformerId));
-        System.out.println(analysis.toString());
         chromatographicOilAnalysisRepository.save(analysis);
-        return "redirect:/transformers/{transformerId}/chromatographic-oil-analyzes";
+        return "redirect:/transformers/" + transformerId + "/chromatographic-oil-analyzes";
     }
 }

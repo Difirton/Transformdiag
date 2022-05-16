@@ -29,5 +29,5 @@ public class Transformer {
     private String factoryNumber;
 
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL)
-    private List<ChromatographicOilAnalysis> chromatographicOilAnalysis = new java.util.ArrayList<>();
+    private List<ChromatographicOilAnalysis> chromatographicOilAnalysis;
 }

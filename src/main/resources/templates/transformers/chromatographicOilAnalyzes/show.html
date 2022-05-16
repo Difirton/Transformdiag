@@ -36,7 +36,7 @@
             <td th:text="${analysis.getAcetyleneC2H2()}"/>
             <td>
                 <div class="col-sm-6 controls">
-                    <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes/{analysisId}/edit(transformerId=${transformerId},analysisId=${analysis.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Изменить</a>
+                    <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes/{id}/edit(transformerId=${transformerId},id=${analysis.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Изменить</a>
                 </div>
             </td>
         </tr>

@@ -1,5 +1,7 @@
 package com.difirton.transformdiag;
 
+import com.difirton.transformdiag.repository.ChromatographicOilAnalysisRepository;
+import com.difirton.transformdiag.service.ChromatographicOilAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

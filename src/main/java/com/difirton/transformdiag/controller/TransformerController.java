@@ -48,18 +48,18 @@ public class TransformerController {
         return "transformers/edit";
     }
 
-    @PatchMapping("/{Id}")
+    @PatchMapping("/{id}")
     String update(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult,
-                  @PathVariable Long Id) {
+                  @PathVariable Long id) {
         if (bindingResult.hasErrors()) {
             return "transformers/edit";
         }
         repository.save(transformer);
-        return "redirect:/transformers/{Id}";
+        return "redirect:/transformers/{id}";
     }
 
-    @DeleteMapping("{Id}")
-    String deleteTransformer(@PathVariable("Id") Long transformerId) {
+    @DeleteMapping("{id}")
+    String deleteTransformer(@PathVariable("id") Long transformerId) {
         repository.deleteById(transformerId);
         return "redirect:/transformers";
     }

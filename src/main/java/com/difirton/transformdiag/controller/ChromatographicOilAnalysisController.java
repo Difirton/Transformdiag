@@ -65,4 +65,10 @@ public class ChromatographicOilAnalysisController {
         chromatographicOilAnalysisRepository.save(analysis);
         return "redirect:/transformers/" + transformerId + "/chromatographic-oil-analyzes";
     }
+
+    @DeleteMapping("{id}")
+    String delete(@PathVariable("id") Long id, @PathVariable("transformerId") Long transformerId) {
+        chromatographicOilAnalysisRepository.deleteById(id);
+        return "redirect:/transformers/" + transformerId + "/chromatographic-oil-analyzes";
+    }
 }

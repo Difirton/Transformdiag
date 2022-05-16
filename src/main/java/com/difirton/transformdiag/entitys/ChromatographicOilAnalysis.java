@@ -20,7 +20,7 @@ public class ChromatographicOilAnalysis {
     @Column(name = "date_analysis")
     private Date dateAnalysis;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transformer")
     private Transformer transformer;
 

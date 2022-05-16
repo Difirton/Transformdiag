@@ -36,31 +36,31 @@ public class TransformerController {
         return "redirect:/transformers";
     }
 
-    @GetMapping("/{id}")
-    String show(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("transformer", repository.getById(id));
+    @GetMapping("/{transformerId}")
+    String show(@PathVariable("transformerId") Long transformerId, Model model) {
+        model.addAttribute("transformer", repository.getById(transformerId));
         return "transformers/show";
     }
 
-    @GetMapping("/{id}/edit")
-    String edit(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("transformer", repository.getById(id));
+    @GetMapping("/{transformerId}/edit")
+    String edit(@PathVariable("transformerId") Long transformerId, Model model) {
+        model.addAttribute("transformer", repository.getById(transformerId));
         return "transformers/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{Id}")
     String update(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult,
-                  @PathVariable Long id) {
+                  @PathVariable Long Id) {
         if (bindingResult.hasErrors()) {
             return "transformers/edit";
         }
         repository.save(transformer);
-        return "redirect:/transformers/{id}";
+        return "redirect:/transformers/{Id}";
     }
 
-    @DeleteMapping("{id}")
-    String deleteTransformer(@PathVariable("id") Long id) {
-        repository.deleteById(id);
+    @DeleteMapping("{Id}")
+    String deleteTransformer(@PathVariable("Id") Long transformerId) {
+        repository.deleteById(transformerId);
         return "redirect:/transformers";
     }
 }

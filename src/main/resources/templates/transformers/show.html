@@ -26,17 +26,17 @@
     </table>
 
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{id}/chromatographic-oil-analyzes(id=${transformer.getId()})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Результаты измерения ХАРГ</a>
     </div>
     <br/>
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{id}/edit(id=${transformer.getId()})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/transformers/{transformerId}/edit(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Редактировать</a>
     </div>
         <br/>
     <div class="col-sm-6 controls">
-        <form th:method="DELETE" th:action="@{/transformers/{id}(id=${transformer.getId()})}" class="form-horizontal">
+        <form th:method="DELETE" th:action="@{/transformers/{transformerId}(transformerId=${transformer.getId()})}" class="form-horizontal">
             <input type="submit" value="Удалить" class="btn btn-info btn-sm active">
         </form>
     </div>

@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <br>
-    <form th:method="PATCH" th:action="@{/transformers/{id}(id=${transformer.getId()})}"
+    <form th:method="PATCH" th:action="@{/transformers/{transformerId}(transformerId=${transformer.getId()})}"
           th:object="${transformer}" class="form-horizontal">
 
         <div style="margin-bottom: 15px" class="input-group">

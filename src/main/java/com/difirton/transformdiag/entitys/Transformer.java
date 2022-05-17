@@ -30,4 +30,7 @@ public class Transformer {
 
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL)
     private List<ChromatographicOilAnalysis> chromatographicOilAnalysis;
+
+    @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL)
+    private List<PhysicalChemicalOilAnalysis> physicalChemicalAnalysisOils;
 }

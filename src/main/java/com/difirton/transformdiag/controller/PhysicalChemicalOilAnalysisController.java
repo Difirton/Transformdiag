@@ -1,5 +1,6 @@
 package com.difirton.transformdiag.controller;
 
+import com.difirton.transformdiag.entitys.ChromatographicOilAnalysis;
 import com.difirton.transformdiag.entitys.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.repository.PhysicalChemicalOilAnalysisRepository;
 import com.difirton.transformdiag.repository.TransformerRepository;
@@ -57,7 +58,7 @@ public class PhysicalChemicalOilAnalysisController {
     String update(@Valid @ModelAttribute("analysis") PhysicalChemicalOilAnalysis analysis, BindingResult bindingResult,
                   @PathVariable("transformerId") Long transformerId, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
-            return "transformers/physicalChemicalOilAnalysis/edit";
+            return "transformers/physicalChemicalOilAnalyzes/edit";
         }
         analysis.setTransformer(transformerRepository.getById(transformerId));
         physicalChemicalOilAnalysisRepository.save(analysis);

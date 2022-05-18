@@ -21,6 +21,7 @@
             <th>Этан (С2Н6)</th>
             <th>Этилен (С2Н4)</th>
             <th>Ацетилен (С2Н2)</th>
+            <th>Номер протокола</th>
             <th>Действие</th>
         </tr>
         </thead>
@@ -34,6 +35,7 @@
             <td th:text="${analysis.getEthaneC2H6()}"/>
             <td th:text="${analysis.getEthyleneC2H4()}"/>
             <td th:text="${analysis.getAcetyleneC2H2()}"/>
+            <td th:text="${analysis.getProtocolName()}"/>
             <td>
                 <div class="col-sm-6 controls">
                     <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes/{id}/edit(transformerId=${transformerId},id=${analysis.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Изменить</a>

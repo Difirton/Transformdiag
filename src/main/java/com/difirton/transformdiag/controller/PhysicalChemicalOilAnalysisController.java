@@ -1,16 +1,18 @@
 package com.difirton.transformdiag.controller;
 
+import com.difirton.transformdiag.entitys.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.repository.PhysicalChemicalOilAnalysisRepository;
 import com.difirton.transformdiag.repository.TransformerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/transformers/{transformerId}/physical-chemical-oil-analysis")
+@RequestMapping("/transformers/{transformerId}/physical-chemical-oil-analyzes")
 public class PhysicalChemicalOilAnalysisController {
     PhysicalChemicalOilAnalysisRepository physicalChemicalOilAnalysisRepository;
     TransformerRepository transformerRepository;
@@ -23,8 +25,49 @@ public class PhysicalChemicalOilAnalysisController {
 
     @GetMapping
     String findAll(Model model, @PathVariable("transformerId") Long transformerId) {
-        model.addAttribute(transformerRepository.getById(transformerId).getPhysicalChemicalAnalysisOils());
+        model.addAttribute("analyzes",transformerRepository.getById(transformerId).getPhysicalChemicalOilAnalysis());
         model.addAttribute("transformerId", transformerId);
-        return "transformers/physicalChemicalOilAnalysis/show";
+        return "transformers/physicalChemicalOilAnalyzes/show";
     }
+
+    @GetMapping("/add")
+    String addAnalysis(@ModelAttribute("analysis") PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis, Model model, @PathVariable("transformerId") Long transformerId) {
+        model.addAttribute("transformerId", transformerId);
+        return "transformers/physicalChemicalOilAnalyzes/add";
+    }
+
+    @PostMapping
+    String create(@Valid @ModelAttribute("analysis") PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis, BindingResult bindingResult,
+                  @PathVariable("transformerId") Long transformerId) {
+        physicalChemicalOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
+        if (bindingResult.hasErrors()) {
+            return "/transformers/physicalChemicalOilAnalyzes/add";
+        }
+        physicalChemicalOilAnalysisRepository.save(physicalChemicalOilAnalysis);
+        return "redirect:/transformers/" + transformerId + "/physical-chemical-oil-analyzes";
+    }
+
+    @GetMapping("/{id}/edit")
+    String edit(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("analysis", physicalChemicalOilAnalysisRepository.getById(id));
+        return "transformers/physicalChemicalOilAnalyzes/edit";
+    }
+
+    @PatchMapping("{id}")
+    String update(@Valid @ModelAttribute("analysis") PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis, BindingResult bindingResult,
+                  @PathVariable("transformerId") Long transformerId, @PathVariable("id") Long id) {
+        if (bindingResult.hasErrors()) {
+            return "transformers/physicalChemicalOilAnalysis/edit";
+        }
+        physicalChemicalOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
+        physicalChemicalOilAnalysisRepository.save(physicalChemicalOilAnalysis);
+        return "redirect:/transformers/" + transformerId + "/physical-chemical-oil-analyzes";
+    }
+
+    @DeleteMapping("{id}")
+    String delete(@PathVariable("id") Long id, @PathVariable("transformerId") Long transformerId) {
+        physicalChemicalOilAnalysisRepository.deleteById(id);
+        return "redirect:/transformers/" + transformerId + "/physical-chemical-oil-analyzes";
+    }
+
 }

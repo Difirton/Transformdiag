@@ -15,35 +15,35 @@
         <tr>
             <th>Дата</th>
             <th>Температура вспышки</th>
-            <th>Оксид углерода (СО)</th>
-            <th>Диоксид углерода (СО2)</th>
-            <th>Метан (СН4)</th>
-            <th>Этан (С2Н6)</th>
-            <th>Этилен (С2Н4)</th>
-            <th>Ацетилен (С2Н2)</th>
+            <th>Кислотное число</th>
+            <th>Класс чистоты</th>
+            <th>Влагосодержание</th>
+            <th>Пробивное напряжние</th>
+            <th>Тангенс угла диэлектрических потерь</th>
+            <th>Номер протокола</th>
             <th>Действие</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="analysis : ${analyzes}">
             <td th:text="${analysis.getDateAnalysis()}"/>
-            <td th:text="${analysis.getHydrogenGasH2()}"/>
-            <td th:text="${analysis.getCarbonMonoxideCO()}"/>
-            <td th:text="${analysis.getCarbonDioxideCO2()}"/>
-            <td th:text="${analysis.getMethaneCH4()}"/>
-            <td th:text="${analysis.getEthaneC2H6()}"/>
-            <td th:text="${analysis.getEthyleneC2H4()}"/>
-            <td th:text="${analysis.getAcetyleneC2H2()}"/>
+            <td th:text="${analysis.getFlashPoint()}"/>
+            <td th:text="${analysis.getAcidNumber()}"/>
+            <td th:text="${analysis.getCleanlinessClass()}"/>
+            <td th:text="${analysis.getMoistureContent()}"/>
+            <td th:text="${analysis.getBreakdownVoltage()}"/>
+            <td th:text="${analysis.getDielectricLossTangent()}"/>
+            <td th:text="${analysis.getProtocolName()}"/>
             <td>
                 <div class="col-sm-6 controls">
-                    <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes/{id}/edit(transformerId=${transformerId},id=${analysis.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Изменить</a>
+                    <a th:href="@{/transformers/{transformerId}/physical-chemical-oil-analyzes/{id}/edit(transformerId=${transformerId},id=${analysis.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Изменить</a>
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes/add(transformerId=${transformerId})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/transformers/{transformerId}/physical-chemical-oil-analyzes/add(transformerId=${transformerId})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Добавить измерение</a>
     </div>
 </div>

@@ -31,6 +31,11 @@
     </div>
     <br/>
     <div class="col-sm-6 controls">
+        <a th:href="@{/transformers/{transformerId}/physical-chemical-oil-analyzes(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
+           role="button" aria-pressed="true">Результаты измерения ФХА</a>
+    </div>
+    <br/>
+    <div class="col-sm-6 controls">
         <a th:href="@{/transformers/{transformerId}/edit(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Редактировать</a>
     </div>

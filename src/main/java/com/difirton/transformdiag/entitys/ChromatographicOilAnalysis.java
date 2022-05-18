@@ -9,8 +9,8 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "chromatographic_oil_analysis")
 @RequiredArgsConstructor
+@Table(name = "chromatographic_oil_analysis")
 public class ChromatographicOilAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     <br>
-    <form th:method="PATCH" th:action="@{/transformers/{transformerId}/chromatographic-oil-analyzes/{id}(transformerId=${analysis.getTransformer().getId()},id=${analysis.getId()})}"
+    <form th:method="PATCH" th:action="@{/transformers/{transformerId}/physical-chemical-oil-analyzes/{id}(transformerId=${analysis.getTransformer().getId()},id=${analysis.getId()})}"
           th:object="${analysis}" class="form-horizontal">
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -20,44 +20,43 @@
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{hydrogenGasH2}" placeholder="Водород (Н2), %об" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('hydrogenGasH2')}" th:errorclass="error" th:errors="*{hydrogenGasH2}">Invalid H2</div>
+            <div style="color:red" th:if="${#fields.hasErrors('flashPoint')}" th:errorclass="error" th:errors="*{flashPoint}">Invalid flash point</div>
+            <div style="color:red" th:if="${#fields.hasErrors('flashPoint')}" th:errorclass="error" th:errors="*{flashPoint}">Invalid H2</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{carbonMonoxideCO}" placeholder="Оксид углерода (СО), %об" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('carbonMonoxideCO')}" th:errorclass="error" th:errors="*{carbonMonoxideCO}">Invalid CO</div>
+            <input th:field="*{acidNumber}" placeholder="Кислотное число" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('acidNumber')}" th:errorclass="error" th:errors="*{acidNumber}">Invalid acid number</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{carbonDioxideCO2}" placeholder="Диоксид углерода (СО2), %об" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('carbonDioxideCO2')}" th:errorclass="error" th:errors="*{carbonDioxideCO2}">Invalid CO2</div>
+            <input th:field="*{cleanlinessClass}" placeholder="Класс чистоты" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('cleanlinessClass')}" th:errorclass="error" th:errors="*{cleanlinessClass}">Invalid cleanliness class</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{methaneCH4}" placeholder="Метан (СH4), %об" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('methaneCH4')}" th:errorclass="error" th:errors="*{methaneCH4}">Invalid CH4</div>
+            <input th:field="*{moistureContent}" placeholder="Влагосодержание" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('moistureContent')}" th:errorclass="error" th:errors="*{moistureContent}">Invalid moisture content</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{ethaneC2H6}" placeholder="Этан (С2H6), %об" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('ethaneC2H6')}" th:errorclass="error" th:errors="*{ethaneC2H6}">Invalid CH4</div>
+            <input th:field="*{breakdownVoltage}" placeholder="Пробивное напряжение" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('breakdownVoltage')}" th:errorclass="error" th:errors="*{breakdownVoltage}">Invalid breakdown voltage</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{ethyleneC2H4}" placeholder="Этилен (С2H4), %об" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('ethyleneC2H4')}" th:errorclass="error" th:errors="*{ethyleneC2H4}">Invalid C2H4</div>
+            <input th:field="*{dielectricLossTangent}" placeholder="Тангенс угла диэлектрических потерь" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('dielectricLossTangent')}" th:errorclass="error" th:errors="*{dielectricLossTangent}">Invalid dielectric loss tangent</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{acetyleneC2H2}" placeholder="Ацетилен (С2H2), %об" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('acetyleneC2H2')}" th:errorclass="error" th:errors="*{acetyleneC2H2}">Invalid C2H2</div>
+            <input th:field="*{protocolName}" placeholder="Номер протокола" class="form-control"/>
         </div>
 
         <div style="margin-top: 10px" class="form-group">
@@ -67,7 +66,7 @@
         </div>
     </form>
     <div class="col-sm-6 controls">
-        <form th:method="DELETE" th:action="@{/transformers/{transformerId}/chromatographic-oil-analyzes/{id}(transformerId=${analysis.getTransformer().getId()},id=${analysis.getId()})}" class="form-horizontal">
+        <form th:method="DELETE" th:action="@{/transformers/{transformerId}/physical-chemical-oil-analyzes/{id}(transformerId=${analysis.getTransformer().getId()},id=${analysis.getId()})}" class="form-horizontal">
             <input type="submit" value="Удалить" class="btn btn-info btn-sm active">
         </form>
     </div>

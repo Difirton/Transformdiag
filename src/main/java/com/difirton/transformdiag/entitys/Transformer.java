@@ -32,5 +32,5 @@ public class Transformer {
     private List<ChromatographicOilAnalysis> chromatographicOilAnalysis;
 
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL)
-    private List<PhysicalChemicalOilAnalysis> physicalChemicalAnalysisOils;
+    private List<PhysicalChemicalOilAnalysis> physicalChemicalOilAnalysis;
 }

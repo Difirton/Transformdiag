@@ -59,7 +59,7 @@ public class ChromatographicOilAnalysisController {
     String update(@Valid @ModelAttribute("analysis") ChromatographicOilAnalysis analysis, BindingResult bindingResult,
                   @PathVariable("transformerId") Long transformerId, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
-            return "transformers/edit";
+            return "transformers/chromatographicOilAnalyzes/edit";
         }
         analysis.setTransformer(transformerRepository.getById(transformerId));
         chromatographicOilAnalysisRepository.save(analysis);

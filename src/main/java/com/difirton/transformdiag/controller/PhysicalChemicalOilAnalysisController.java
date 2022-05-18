@@ -54,13 +54,13 @@ public class PhysicalChemicalOilAnalysisController {
     }
 
     @PatchMapping("{id}")
-    String update(@Valid @ModelAttribute("analysis") PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis, BindingResult bindingResult,
+    String update(@Valid @ModelAttribute("analysis") PhysicalChemicalOilAnalysis analysis, BindingResult bindingResult,
                   @PathVariable("transformerId") Long transformerId, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "transformers/physicalChemicalOilAnalysis/edit";
         }
-        physicalChemicalOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
-        physicalChemicalOilAnalysisRepository.save(physicalChemicalOilAnalysis);
+        analysis.setTransformer(transformerRepository.getById(transformerId));
+        physicalChemicalOilAnalysisRepository.save(analysis);
         return "redirect:/transformers/" + transformerId + "/physical-chemical-oil-analyzes";
     }
 

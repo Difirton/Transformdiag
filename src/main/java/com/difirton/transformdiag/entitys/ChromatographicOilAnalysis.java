@@ -66,6 +66,7 @@ public class ChromatographicOilAnalysis {
     @Column(name = "acetylene_C2H2")
     private Integer acetyleneC2H2;
 
-    @Column(name = "protocol_name")
+    @Size(max = 40, message = "Should be less than 40 characters")
+    @Column(name = "protocol_name", length = 40)
     private String protocolName;
 }

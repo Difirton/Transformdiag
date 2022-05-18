@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -63,6 +64,7 @@ public class PhysicalChemicalOilAnalysis {
     @Column(name = "dielectric_loss_tangent")
     private Double dielectricLossTangent;
 
-    @Column(name = "protocol_name")
+    @Size(max = 40, message = "Should be less than 40 characters")
+    @Column(name = "protocol_name", length = 40)
     private String protocolName;
 }

@@ -25,6 +25,21 @@
         </tbody>
     </table>
 
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>KKS</th>
+            <th>Тип</th>
+            <th>Заводской номер</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td th:text="${transformer.getKKS()}"/>
+        <td th:text="${transformer.getType()}"/>
+        <td th:text="${transformer.getFactoryNumber()}"/>
+        </tbody>
+    </table>
+
     <div class="col-sm-6 controls">
         <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Результаты измерения ХАРГ</a>

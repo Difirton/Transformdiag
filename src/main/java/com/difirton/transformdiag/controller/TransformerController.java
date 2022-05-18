@@ -1,6 +1,8 @@
 package com.difirton.transformdiag.controller;
 
 import com.difirton.transformdiag.entitys.Transformer;
+import com.difirton.transformdiag.entitys.TransformerCharacteristics;
+import com.difirton.transformdiag.repository.TransformerCharacteristicsRepository;
 import com.difirton.transformdiag.repository.TransformerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +15,18 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/transformers")
 public class TransformerController {
+    private TransformerRepository transformerRepository;
+    private TransformerCharacteristicsRepository transformerCharacteristicsRepository;
+
     @Autowired
-    private TransformerRepository repository;
+    public TransformerController(TransformerRepository transformerRepository, TransformerCharacteristicsRepository transformerCharacteristicsRepository) {
+        this.transformerRepository = transformerRepository;
+        this.transformerCharacteristicsRepository = transformerCharacteristicsRepository;
+    }
 
     @GetMapping
     String findAll(Model model) {
-        model.addAttribute("transformers", repository.findAll());
+        model.addAttribute("transformers", transformerRepository.findAll());
         return "transformers/transformers";
     }
 
@@ -27,24 +35,41 @@ public class TransformerController {
         return "transformers/add";
     }
 
-    @PostMapping()
+    @GetMapping("/add-transformer_characteristics")
+    String addCharacteristics(@ModelAttribute("transformerCharacteristics") TransformerCharacteristics transformerCharacteristics) {
+        return "transformers/addTransformerCharacteristics";
+    }
+
+    @PostMapping
     String create(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "transformers/add";
         }
-        repository.save(transformer);
+        transformerRepository.save(transformer);
+        return "redirect:/transformers";
+    }
+
+    @PostMapping("/add-transformer_characteristics")
+    String createCharacteristics(@Valid @ModelAttribute("transformerCharacteristics")
+                                 TransformerCharacteristics transformerCharacteristics, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "transformers/addTransformerCharacteristics";
+        }
+        transformerCharacteristicsRepository.save(transformerCharacteristics);
         return "redirect:/transformers";
     }
 
     @GetMapping("/{transformerId}")
     String show(@PathVariable("transformerId") Long transformerId, Model model) {
-        model.addAttribute("transformer", repository.getById(transformerId));
+        model.addAttribute("transformer", transformerRepository.getById(transformerId));
+        model.addAttribute("transformerCharacteristics",
+                transformerRepository.getById(transformerId).getTransformerCharacteristics());
         return "transformers/show";
     }
 
     @GetMapping("/{transformerId}/edit")
     String edit(@PathVariable("transformerId") Long transformerId, Model model) {
-        model.addAttribute("transformer", repository.getById(transformerId));
+        model.addAttribute("transformer", transformerRepository.getById(transformerId));
         return "transformers/edit";
     }
 
@@ -54,13 +79,13 @@ public class TransformerController {
         if (bindingResult.hasErrors()) {
             return "transformers/edit";
         }
-        repository.save(transformer);
+        transformerRepository.save(transformer);
         return "redirect:/transformers/{id}";
     }
 
     @DeleteMapping("{id}")
     String deleteTransformer(@PathVariable("id") Long transformerId) {
-        repository.deleteById(transformerId);
+        transformerRepository.deleteById(transformerId);
         return "redirect:/transformers";
     }
 }

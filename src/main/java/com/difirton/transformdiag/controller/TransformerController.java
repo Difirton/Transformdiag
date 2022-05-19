@@ -60,17 +60,22 @@ public class TransformerController {
     @GetMapping("/{transformerId}/edit")
     String edit(@PathVariable("transformerId") Long transformerId, Model model) {
         model.addAttribute("transformer", transformerRepository.getById(transformerId));
+        model.addAttribute("characteristics", transformerRepository.getById(transformerId)
+                                                                               .getTransformerCharacteristics());
         return "transformers/edit";
     }
 
     @PatchMapping("/{id}")
-    String update(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult,
-                  @PathVariable Long id) {
-        if (bindingResult.hasErrors()) {
-            return "transformers/edit";
+    String update(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResultTransform,
+                  @Valid @ModelAttribute("characteristics") TransformerCharacteristics characteristics,
+                  BindingResult bindingResultCharacteristics, @PathVariable Long id) {
+        if (bindingResultTransform.hasErrors() || (bindingResultCharacteristics.hasErrors())) {
+            return "transformers/add";
         }
         transformerRepository.save(transformer);
-        return "redirect:/transformers/{id}";
+        characteristics.setTransformer(transformer);
+        transformerCharacteristicsRepository.save(characteristics);
+        return "redirect:/transformers";
     }
 
     @DeleteMapping("{id}")

@@ -28,15 +28,37 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>KKS</th>
-            <th>Тип</th>
-            <th>Заводской номер</th>
+            <th>Мощность</th>
+            <th>Напряжение ВН</th>
+            <th>Напряжение СН</th>
+            <th>Напряжение НН</th>
+            <th>Ток ВН</th>
+            <th>Ток СН</th>
+            <th>Ток НН</th>
+            <th>Частота сети</th>
+            <th>Число фаз</th>
+            <th>Схема и группа соединения</th>
+            <th>Напряжение КЗ</th>
+            <th>Потери КЗ</th>
+            <th>Потери ХХ</th>
+            <th>Ток ХХ</th>
         </tr>
         </thead>
         <tbody>
-        <td th:text="${transformer.getKKS()}"/>
-        <td th:text="${transformer.getType()}"/>
-        <td th:text="${transformer.getFactoryNumber()}"/>
+        <td th:text="${transformerCharacteristics.getPower()}"/>
+        <td th:text="${transformerCharacteristics.getUpVoltage()}"/>
+        <td th:text="${transformerCharacteristics.getMidleVoltage()}"/>
+        <td th:text="${transformerCharacteristics.getDownVoltage()}"/>
+        <td th:text="${transformerCharacteristics.getUpCurrent()}"/>
+        <td th:text="${transformerCharacteristics.getMidleCurrent()}"/>
+        <td th:text="${transformerCharacteristics.getDownCurrent()}"/>
+        <td th:text="${transformerCharacteristics.getFrequency()}"/>
+        <td th:text="${transformerCharacteristics.getNumberPhases()}"/>
+        <td th:text="${transformerCharacteristics.getConnectionDiagram()}"/>
+        <td th:text="${transformerCharacteristics.getShortCircuitVoltage()}"/>
+        <td th:text="${transformerCharacteristics.getShortCircuitLoss()}"/>
+        <td th:text="${transformerCharacteristics.getIdleLoss()}"/>
+        <td th:text="${transformerCharacteristics.getNoLoadCurrent()}"/>
         </tbody>
     </table>
 

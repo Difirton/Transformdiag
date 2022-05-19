@@ -11,28 +11,117 @@
 <body>
 <div class="container">
     <br>
-    <form th:method="POST" th:action="@{/transformers}"
-          th:object="${transformer}" class="form-horizontal">
+    <form th:method="POST" th:action="@{/transformers}" class="form-horizontal">
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{KKS}" placeholder="Номер KKS" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('KKS')}" th:errorclass="error" th:errors="*{KKS}">
+            <input th:field="*{transformer.KKS}" placeholder="Номер KKS" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('transformer.KKS')}" th:errorclass="error" th:errors="*{transformer.KKS}">
                 Invalid KKS</div>
         </div>
 
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{type}" placeholder="Тип" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('type')}" th:errorclass="error" th:errors="*{type}">Invalid type</div>
+            <input th:field="*{transformer.type}" placeholder="Тип" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('transformer.type')}" th:errorclass="error" th:errors="*{transformer.type}">Invalid type</div>
         </div>
 
         <div style="margin-bottom: 15px" class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input th:field="*{factoryNumber}" placeholder="Заводской номер" class="form-control"/>
-            <div style="color:red" th:if="${#fields.hasErrors('factoryNumber')}" th:errorclass="error" th:errors="*{factoryNumber}">Invalid type</div>
+            <input th:field="*{transformer.factoryNumber}" placeholder="Заводской номер" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('transformer.factoryNumber')}" th:errorclass="error" th:errors="*{transformer.factoryNumber}">Invalid type</div>
         </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.power}" placeholder="Мощность трансформатора" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.power')}" th:errorclass="error" th:errors="*{characteristics.power}"> Invalid power</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.upVoltage}" placeholder="Напряжение ВН" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.upVoltage')}" th:errorclass="error" th:errors="*{characteristics.upVoltage}">
+                    Invalid up voltage</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.midleVoltage}" placeholder="Напряжение СН" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.midleVoltage')}" th:errorclass="error" th:errors="*{characteristics.midleVoltage}">
+                    Invalid midle voltage</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.downVoltage}" placeholder="Напряжение НН" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.downVoltage')}" th:errorclass="error" th:errors="*{characteristics.downVoltage}">
+                    Invalid down voltage</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.upCurrent}" placeholder="Ток ВН" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.upCurrent')}" th:errorclass="error" th:errors="*{characteristics.upCurrent}">
+                    Invalid up current</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.midleCurrent}" placeholder="Ток СН" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.midleCurrent')}" th:errorclass="error" th:errors="*{characteristics.midleCurrent}">
+                    Invalid midle current</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.downCurrent}" placeholder="Ток НН" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.downCurrent')}" th:errorclass="error" th:errors="*{characteristics.downCurrent}">
+                    Invalid down current</div>
+            </div>
+
+        <div style="margin-bottom: 15px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input th:field="*{characteristics.frequency}" placeholder="Частота питающего напряжения" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('characteristics.frequency')}" th:errorclass="error" th:errors="*{characteristics.frequency}">Invalid frequency</div>
+        </div>
+
+        <div style="margin-bottom: 15px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input th:field="*{characteristics.numberPhases}" placeholder="Число фаз" class="form-control"/>
+            <div style="color:red" th:if="${#fields.hasErrors('characteristics.numberPhases')}" th:errorclass="error" th:errors="*{characteristics.numberPhases}">Invalid numberPhases</div>
+        </div>
+
+        <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.connectionDiagram}" placeholder="Схема и группа соединения обмоток" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.connectionDiagram')}" th:errorclass="error" th:errors="*{characteristics.connectionDiagram}">Invalid number connection diagram</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.shortCircuitVoltage}" placeholder="Потери короткого замыкания" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.shortCircuitVoltage')}" th:errorclass="error" th:errors="*{characteristics.shortCircuitVoltage}">Invalid short circuit voltage</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.shortCircuitLoss}" placeholder="Потери короткого замыкания" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.shortCircuitLoss')}" th:errorclass="error" th:errors="*{characteristics.shortCircuitLoss}">Invalid short circuit loss</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.idleLoss}" placeholder="Потери холостого хода" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.idleLoss')}" th:errorclass="error" th:errors="*{characteristics.idleLoss}">Invalid idle loss</div>
+            </div>
+
+            <div style="margin-bottom: 15px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input th:field="*{characteristics.noLoadCurrent}" placeholder="Ток холостого хода" class="form-control"/>
+                <div style="color:red" th:if="${#fields.hasErrors('characteristics.noLoadCurrent')}" th:errorclass="error" th:errors="*{characteristics.noLoadCurrent}">Invalid no load current</div>
+            </div>
 
         <div style="margin-top: 10px" class="form-group">
             <div class="col-sm-6 controls">

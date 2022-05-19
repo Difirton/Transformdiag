@@ -6,10 +6,10 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+@Entity
 @Data
 @RequiredArgsConstructor
 @Table(name = "transformer_characteristics")
-@Entity
 public class TransformerCharacteristics {
 
     @Id
@@ -17,7 +17,8 @@ public class TransformerCharacteristics {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "transformerCharacteristics")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transformer_id")
     private Transformer transformer;
 
     @NotNull(message = "Should not be empty")

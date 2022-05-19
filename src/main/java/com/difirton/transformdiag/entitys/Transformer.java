@@ -30,8 +30,7 @@ public class Transformer {
     @Column(name = "factory_number", length = 20)
     private String factoryNumber;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "transformer_characteristics", referencedColumnName = "transformer_id")
+    @OneToOne(mappedBy = "transformer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private TransformerCharacteristics transformerCharacteristics;
 
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL)

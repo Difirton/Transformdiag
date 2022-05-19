@@ -31,31 +31,21 @@ public class TransformerController {
     }
 
     @GetMapping("/add")
-    String add(@ModelAttribute("transformer") Transformer transformer) {
+    String add(@ModelAttribute("transformer") Transformer transformer,
+               @ModelAttribute("characteristics") TransformerCharacteristics characteristics) {
         return "transformers/add";
     }
 
-    @GetMapping("/add-transformer_characteristics")
-    String addCharacteristics(@ModelAttribute("transformerCharacteristics") TransformerCharacteristics transformerCharacteristics) {
-        return "transformers/addTransformerCharacteristics";
-    }
-
     @PostMapping
-    String create(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+    String create(@Valid @ModelAttribute("transformer") Transformer transformer, BindingResult bindingResultTransform,
+                  @Valid @ModelAttribute("characteristics") TransformerCharacteristics characteristics,
+                  BindingResult bindingResultCharacteristics) {
+        if (bindingResultTransform.hasErrors() || (bindingResultCharacteristics.hasErrors())) {
             return "transformers/add";
         }
         transformerRepository.save(transformer);
-        return "redirect:/transformers";
-    }
-
-    @PostMapping("/add-transformer_characteristics")
-    String createCharacteristics(@Valid @ModelAttribute("transformerCharacteristics")
-                                 TransformerCharacteristics transformerCharacteristics, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "transformers/addTransformerCharacteristics";
-        }
-        transformerCharacteristicsRepository.save(transformerCharacteristics);
+        characteristics.setTransformer(transformer);
+        transformerCharacteristicsRepository.save(characteristics);
         return "redirect:/transformers";
     }
 

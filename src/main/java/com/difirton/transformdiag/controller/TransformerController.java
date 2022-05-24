@@ -4,7 +4,10 @@ import com.difirton.transformdiag.entitys.Transformer;
 import com.difirton.transformdiag.entitys.TransformerCharacteristics;
 import com.difirton.transformdiag.repository.TransformerCharacteristicsRepository;
 import com.difirton.transformdiag.repository.TransformerRepository;
+import com.difirton.transformdiag.service.TransformerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,18 +18,16 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/transformers")
 public class TransformerController {
-    private TransformerRepository transformerRepository;
-    private TransformerCharacteristicsRepository transformerCharacteristicsRepository;
+    private TransformerService transformerService;
 
     @Autowired
-    public TransformerController(TransformerRepository transformerRepository, TransformerCharacteristicsRepository transformerCharacteristicsRepository) {
-        this.transformerRepository = transformerRepository;
-        this.transformerCharacteristicsRepository = transformerCharacteristicsRepository;
+    public TransformerController(TransformerService transformerService) {
+        this.transformerService = transformerService;
     }
 
     @GetMapping
     String findAll(Model model) {
-        model.addAttribute("transformers", transformerRepository.findAll());
+        model.addAttribute("transformers", transformerService.getAllTransformer());
         return "transformers/transformers";
     }
 
@@ -79,8 +80,11 @@ public class TransformerController {
     }
 
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     String deleteTransformer(@PathVariable("id") Long transformerId) {
-        transformerRepository.deleteById(transformerId);
+        try {
+            transformerRepository.deleteById(transformerId);
+        } catch (EmptyResultDataAccessException e) {}
         return "redirect:/transformers";
     }
 }

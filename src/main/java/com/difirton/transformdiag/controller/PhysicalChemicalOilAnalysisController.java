@@ -5,6 +5,8 @@ import com.difirton.transformdiag.entitys.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.repository.PhysicalChemicalOilAnalysisRepository;
 import com.difirton.transformdiag.repository.TransformerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -66,8 +68,11 @@ public class PhysicalChemicalOilAnalysisController {
     }
 
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     String delete(@PathVariable("id") Long id, @PathVariable("transformerId") Long transformerId) {
-        physicalChemicalOilAnalysisRepository.deleteById(id);
+        try {
+            physicalChemicalOilAnalysisRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {}
         return "redirect:/transformers/" + transformerId + "/physical-chemical-oil-analyzes";
     }
 

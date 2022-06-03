@@ -23,7 +23,7 @@ public class ChromatographicOilAnalysisService {
     
     public List<ChromatographicOilAnalysis> getAllChromatographicOilAnalysisByTransformerId(Long transformerId) {
         return transformerRepository.findById(transformerId).get().getChromatographicOilAnalysis();
-    }
+    } //TODO попробовать не использовать репозиторий трансформатора
     
     public void setTransformerToChromatographicOilAnalysis(ChromatographicOilAnalysis chromatographicOilAnalysis, 
                                                            Long transformerId) {

@@ -44,25 +44,23 @@ public class TransformerController {
         if (bindingResultTransform.hasErrors() || (bindingResultCharacteristics.hasErrors())) {
             return "transformers/add";
         }
-        transformerRepository.save(transformer);
-        characteristics.setTransformer(transformer);
-        transformerCharacteristicsRepository.save(characteristics);
+        transformerService.saveTransformer(transformer, characteristics);
         return "redirect:/transformers";
     }
 
     @GetMapping("/{transformerId}")
     String show(@PathVariable("transformerId") Long transformerId, Model model) {
-        model.addAttribute("transformer", transformerRepository.getById(transformerId));
+        model.addAttribute("transformer", transformerService.getTransformerById(transformerId));
         model.addAttribute("transformerCharacteristics",
-                transformerRepository.getById(transformerId).getTransformerCharacteristics());
+                transformerService.getTransformerCharacteristicsById(transformerId));
         return "transformers/show";
     }
 
     @GetMapping("/{transformerId}/edit")
     String edit(@PathVariable("transformerId") Long transformerId, Model model) {
-        model.addAttribute("transformer", transformerRepository.getById(transformerId));
-        model.addAttribute("characteristics", transformerRepository.getById(transformerId)
-                                                                               .getTransformerCharacteristics());
+        model.addAttribute("transformer", transformerService.getTransformerById(transformerId));
+        model.addAttribute("characteristics", transformerService
+                .getTransformerCharacteristicsById(transformerId));
         return "transformers/edit";
     }
 
@@ -73,18 +71,13 @@ public class TransformerController {
         if (bindingResultTransform.hasErrors() || (bindingResultCharacteristics.hasErrors())) {
             return "transformers/add";
         }
-        transformerRepository.save(transformer);
-        characteristics.setTransformer(transformer);
-        transformerCharacteristicsRepository.save(characteristics);
+        transformerService.saveTransformer(transformer, characteristics);
         return "redirect:/transformers";
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     String deleteTransformer(@PathVariable("id") Long transformerId) {
-        try {
-            transformerRepository.deleteById(transformerId);
-        } catch (EmptyResultDataAccessException e) {}
+        transformerService.deleteTransformerById(transformerId);
         return "redirect:/transformers";
     }
 }

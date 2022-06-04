@@ -3,6 +3,7 @@ package com.difirton.transformdiag.service;
 import com.difirton.transformdiag.entitys.ChromatographicOilAnalysis;
 import com.difirton.transformdiag.repository.ChromatographicOilAnalysisRepository;
 import com.difirton.transformdiag.repository.TransformerRepository;
+import com.difirton.transformdiag.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -23,14 +24,12 @@ public class ChromatographicOilAnalysisService {
     
     public List<ChromatographicOilAnalysis> getAllChromatographicOilAnalysisByTransformerId(Long transformerId) {
         return transformerRepository.findById(transformerId).get().getChromatographicOilAnalysis();
-    } //TODO попробовать не использовать репозиторий трансформатора
-    
-    public void setTransformerToChromatographicOilAnalysis(ChromatographicOilAnalysis chromatographicOilAnalysis, 
-                                                           Long transformerId) {
-        chromatographicOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
     }
     
-    public void createChromatographicOilAnalysis(ChromatographicOilAnalysis chromatographicOilAnalysis) {
+    public void createChromatographicOilAnalysis(ChromatographicOilAnalysis chromatographicOilAnalysis,
+                                                 Long transformerId, String dateAnalysis) {
+        chromatographicOilAnalysis.setDateAnalysis(DateUtil.stringToDate(dateAnalysis));
+        chromatographicOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
         chromatographicOilAnalysisRepository.save(chromatographicOilAnalysis);
     }
     

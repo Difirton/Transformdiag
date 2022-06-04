@@ -3,6 +3,7 @@ package com.difirton.transformdiag.service;
 import com.difirton.transformdiag.entitys.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.repository.PhysicalChemicalOilAnalysisRepository;
 import com.difirton.transformdiag.repository.TransformerRepository;
+import com.difirton.transformdiag.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -24,12 +25,11 @@ public class PhysicalChemicalOilAnalysisService {
         return transformerRepository.findById(transformerId).get().getPhysicalChemicalOilAnalysis();
     }
 
-    public void setTransformerToPhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis,
-                                                           Long transformerId) {
+    public void createPhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis,
+                                                  Long transformerId, String dateAnalysis) {
+        System.out.println(dateAnalysis);
+        physicalChemicalOilAnalysis.setDateAnalysis(DateUtil.stringToDate(dateAnalysis));
         physicalChemicalOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
-    }
-
-    public void createPhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis) {
         physicalChemicalOilAnalysisRepository.save(physicalChemicalOilAnalysis);
     }
 

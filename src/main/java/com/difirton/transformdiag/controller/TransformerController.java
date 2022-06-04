@@ -2,12 +2,8 @@ package com.difirton.transformdiag.controller;
 
 import com.difirton.transformdiag.entitys.Transformer;
 import com.difirton.transformdiag.entitys.TransformerCharacteristics;
-import com.difirton.transformdiag.repository.TransformerCharacteristicsRepository;
-import com.difirton.transformdiag.repository.TransformerRepository;
 import com.difirton.transformdiag.service.TransformerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

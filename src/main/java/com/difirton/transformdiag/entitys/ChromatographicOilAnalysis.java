@@ -2,6 +2,7 @@ package com.difirton.transformdiag.entitys;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -17,6 +18,8 @@ public class ChromatographicOilAnalysis {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="dd.MM.yyyy")
     @Column(name = "date_analysis")
     private Date dateAnalysis;
 

@@ -26,7 +26,7 @@
         </thead>
         <tbody>
         <tr th:each="analysis : ${analyzes}">
-            <td th:text="${analysis.getDateAnalysis()}"/>
+            <td th:text="${#calendars.format(analysis.getDateAnalysis(),'dd.MM.yyyy')}"/>
             <td th:text="${analysis.getFlashPoint()}"/>
             <td th:text="${analysis.getAcidNumber()}"/>
             <td th:text="${analysis.getCleanlinessClass()}"/>

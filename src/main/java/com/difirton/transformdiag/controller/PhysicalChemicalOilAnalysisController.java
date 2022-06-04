@@ -14,6 +14,7 @@ import javax.validation.Valid;
 @RequestMapping("/transformers/{transformerId}/physical-chemical-oil-analyzes")
 public class PhysicalChemicalOilAnalysisController {
     PhysicalChemicalOilAnalysisService physicalChemicalOilAnalysisService;
+    private String date;
 
     @Autowired
     public PhysicalChemicalOilAnalysisController(PhysicalChemicalOilAnalysisService physicalChemicalOilAnalysisService) {
@@ -30,7 +31,9 @@ public class PhysicalChemicalOilAnalysisController {
 
     @GetMapping("/add")
     String addAnalysis(@ModelAttribute("analysis") PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis, Model model,
+                       @ModelAttribute("date") String date,
                        @PathVariable("transformerId") Long transformerId) {
+        model.addAttribute("date", date);
         model.addAttribute("transformerId", transformerId);
         return "transformers/physicalChemicalOilAnalyzes/add";
     }
@@ -38,13 +41,13 @@ public class PhysicalChemicalOilAnalysisController {
     @PostMapping
     String create(@Valid @ModelAttribute("analysis") PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis,
                   BindingResult bindingResult,
+                  @ModelAttribute("date") String date,
                   @PathVariable("transformerId") Long transformerId) {
-        physicalChemicalOilAnalysisService
-                .setTransformerToPhysicalChemicalOilAnalysis(physicalChemicalOilAnalysis, transformerId);
         if (bindingResult.hasErrors()) {
             return "/transformers/physicalChemicalOilAnalyzes/add";
         }
-        physicalChemicalOilAnalysisService.createPhysicalChemicalOilAnalysis(physicalChemicalOilAnalysis);
+        physicalChemicalOilAnalysisService.createPhysicalChemicalOilAnalysis(physicalChemicalOilAnalysis,
+                transformerId, date);
         return "redirect:/transformers/" + transformerId + "/physical-chemical-oil-analyzes";
     }
 
@@ -62,7 +65,6 @@ public class PhysicalChemicalOilAnalysisController {
         if (bindingResult.hasErrors()) {
             return "transformers/physicalChemicalOilAnalyzes/edit";
         }
-        //analysis.setTransformer(transformerRepository.getById(transformerId));
         physicalChemicalOilAnalysisService.updatePhysicalChemicalOilAnalysis(physicalChemicalOilAnalysis);
         return "redirect:/transformers/" + transformerId + "/physical-chemical-oil-analyzes";
     }

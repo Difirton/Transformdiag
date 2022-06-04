@@ -1,12 +1,8 @@
 package com.difirton.transformdiag.controller;
 
 import com.difirton.transformdiag.entitys.ChromatographicOilAnalysis;
-import com.difirton.transformdiag.repository.ChromatographicOilAnalysisRepository;
-import com.difirton.transformdiag.repository.TransformerRepository;
 import com.difirton.transformdiag.service.ChromatographicOilAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/transformers/{transformerId}/chromatographic-oil-analyzes")
 public class ChromatographicOilAnalysisController {
     private ChromatographicOilAnalysisService chromatographicOilAnalysisService;
+    private String date;
 
     @Autowired
     public ChromatographicOilAnalysisController(ChromatographicOilAnalysisService chromatographicOilAnalysisService) {
@@ -27,29 +24,30 @@ public class ChromatographicOilAnalysisController {
 
     @GetMapping
     String findAllAnalyzes(Model model, @PathVariable("transformerId") Long transformerId) {
-
         model.addAttribute("analyzes",
                 chromatographicOilAnalysisService.getAllChromatographicOilAnalysisByTransformerId(transformerId));
-        model.addAttribute("transformerId", transformerId);
         return "transformers/chromatographicOilAnalyzes/show";
     }
 
     @GetMapping("/add")
-    String addAnalysis(@ModelAttribute("analysis") ChromatographicOilAnalysis analysis, Model model,
+    String addAnalysis(@ModelAttribute("analysis") ChromatographicOilAnalysis analysis,
+                       @ModelAttribute("date") String date, Model model,
                        @PathVariable("transformerId") Long transformerId) {
+        model.addAttribute("date", date);
         model.addAttribute("transformerId", transformerId);
         return "transformers/chromatographicOilAnalyzes/add";
     }
 
     @PostMapping
     String create(@Valid @ModelAttribute("analysis") ChromatographicOilAnalysis chromatographicOilAnalysis,
-                  BindingResult bindingResult, @PathVariable("transformerId") Long transformerId) {
-        chromatographicOilAnalysisService.setTransformerToChromatographicOilAnalysis(chromatographicOilAnalysis,
-                                                                                     transformerId);
+                  BindingResult bindingResult,
+                  @ModelAttribute("date") String date,
+                  @PathVariable("transformerId") Long transformerId) {
         if (bindingResult.hasErrors()) {
             return "/transformers/chromatographicOilAnalyzes/add";
         }
-        chromatographicOilAnalysisService.createChromatographicOilAnalysis(chromatographicOilAnalysis);
+        chromatographicOilAnalysisService.createChromatographicOilAnalysis(chromatographicOilAnalysis,
+                transformerId, date);
         return "redirect:/transformers/" + transformerId + "/chromatographic-oil-analyzes";
     }
 

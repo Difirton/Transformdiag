@@ -25,10 +25,10 @@ public class TransformerService {
         return transformerRepository.findAll();
     }
 
-    public void saveTransformer(Transformer transformer, TransformerCharacteristics characteristics) {
-        transformerRepository.save(transformer);
+    public Transformer saveTransformer(Transformer transformer, TransformerCharacteristics characteristics) {
         characteristics.setTransformer(transformer);
         transformerCharacteristicsRepository.save(characteristics);
+        return transformerRepository.save(transformer);
     }
 
     public Transformer getTransformerById(Long id) {
@@ -41,5 +41,12 @@ public class TransformerService {
 
     public void deleteTransformerById(Long id) {
         transformerRepository.deleteById(id);
+    }
+
+    public Transformer saveTransformer(Transformer transformer) {
+        System.out.println(transformer);
+        System.out.println(transformer.getTransformerCharacteristics());
+        transformerCharacteristicsRepository.save(transformer.getTransformerCharacteristics());
+        return transformerRepository.save(transformer);
     }
 }

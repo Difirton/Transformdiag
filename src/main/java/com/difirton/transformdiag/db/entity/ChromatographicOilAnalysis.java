@@ -20,7 +20,6 @@ import java.time.LocalDate;
 public class ChromatographicOilAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @PastOrPresent

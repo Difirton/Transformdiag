@@ -16,11 +16,10 @@ import java.util.List;
 @ToString(exclude = {"transformerCharacteristics", "chromatographicOilAnalysis", "physicalChemicalOilAnalysis"})
 @EqualsAndHashCode(of = {"KKS", "type", "factoryNumber"})
 @JsonIgnoreProperties(value = {"chromatographicOilAnalysis", "physicalChemicalOilAnalysis"})
-@Table(name = "transformers")
+@Table(name = "TRANSFORMERS")
 public class Transformer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @Size(min = 5, max = 30, message = "KKS should be between 5 and 30 characters ")

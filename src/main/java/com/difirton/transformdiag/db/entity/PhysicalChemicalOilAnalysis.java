@@ -17,12 +17,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Validated
 @Entity
-@Table(name = "physical_chemical_oil_analysis")
+@Table(name = "PHYSICAL_CHEMICAL_OIL_ANALYSIS")
 public class PhysicalChemicalOilAnalysis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
 
     @PastOrPresent

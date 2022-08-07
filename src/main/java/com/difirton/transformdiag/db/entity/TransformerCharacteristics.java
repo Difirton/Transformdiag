@@ -11,19 +11,17 @@ import javax.validation.constraints.*;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-@ToString(exclude = "transformer")
 @JsonIgnoreProperties(value = "transformer", ignoreUnknown = true)
 @EqualsAndHashCode(exclude = "transformer")
-@Table(name = "transformer_characteristics")
+@Table(name = "TRANSFORMER_CHARACTERISTICS")
 public class TransformerCharacteristics {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
+    @ToString.Exclude
     private Transformer transformer;
 
     @NotNull(message = "Should not be empty")

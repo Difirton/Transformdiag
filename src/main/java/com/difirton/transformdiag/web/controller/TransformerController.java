@@ -57,6 +57,8 @@ public class TransformerController {
         model.addAttribute("transformer", transformerService.getTransformerById(transformerId));
         model.addAttribute("characteristics", transformerService
                 .getTransformerCharacteristicsById(transformerId));
+        System.out.println(transformerService
+                .getTransformerCharacteristicsById(transformerId));
         return "transformers/edit";
     }
 

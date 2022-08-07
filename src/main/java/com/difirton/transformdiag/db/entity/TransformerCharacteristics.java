@@ -1,14 +1,19 @@
 package com.difirton.transformdiag.db.entity;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
 @Data
+@AllArgsConstructor
 @RequiredArgsConstructor
+@ToString(exclude = "transformer")
+@JsonIgnoreProperties(value = "transformer")
+@EqualsAndHashCode(exclude = "transformer")
 @Table(name = "transformer_characteristics")
 public class TransformerCharacteristics {
 
@@ -18,7 +23,7 @@ public class TransformerCharacteristics {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "transformer_id")
+    @PrimaryKeyJoinColumn
     private Transformer transformer;
 
     @NotNull(message = "Should not be empty")

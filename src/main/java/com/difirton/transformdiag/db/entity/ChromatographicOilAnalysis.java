@@ -1,6 +1,8 @@
 package com.difirton.transformdiag.db.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
@@ -10,7 +12,8 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Validated
 @Entity
 @Table(name = "chromatographic_oil_analysis")

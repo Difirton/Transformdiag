@@ -36,7 +36,7 @@ public class TransformerService {
     }
 
     public TransformerCharacteristics getTransformerCharacteristicsById(Long id) {
-        return transformerCharacteristicsRepository.findById(id).get();
+        return transformerCharacteristicsRepository.findByTransformerId(id);
     }
 
     public void deleteTransformerById(Long id) {

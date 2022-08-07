@@ -22,7 +22,7 @@ public class PhysicalChemicalOilAnalysisService {
     }
 
     public List<PhysicalChemicalOilAnalysis> getAllPhysicalChemicalOilAnalysisByTransformerId(Long transformerId) {
-        return transformerRepository.findById(transformerId).get().getPhysicalChemicalOilAnalysis();
+        return physicalChemicalOilAnalysisRepository.findByTransformerId(transformerId);
     }
 
     public void createPhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis,

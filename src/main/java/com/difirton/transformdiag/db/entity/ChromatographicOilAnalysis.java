@@ -1,9 +1,9 @@
 package com.difirton.transformdiag.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 
@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Validated
 @Entity
-@Table(name = "chromatographic_oil_analysis")
+@Table(name = "CHROMATOGRAPHIC_OIL_ANALYSIS")
 public class ChromatographicOilAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,7 @@ public class ChromatographicOilAnalysis {
 
     @PastOrPresent
     @DateTimeFormat(pattern="dd.MM.yyyy")
+    @JsonProperty("date_analysis")
     @Column(name = "date_analysis")
     private LocalDate dateAnalysis;
 
@@ -35,6 +36,7 @@ public class ChromatographicOilAnalysis {
     @NotNull(message = "Should not be empty")
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "Count of digits should be between", integer = 10, fraction = 2)
+    @JsonProperty("hydrogen_gas_H2")
     @Column(name = "hydrogen_gas_H2")
     private Integer hydrogenGasH2;
 
@@ -42,6 +44,7 @@ public class ChromatographicOilAnalysis {
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "The number of digits before the decimal point should be no more than 10, after less than 2",
             integer = 10, fraction = 2)
+    @JsonProperty("carbon_monoxide_CO")
     @Column(name = "carbon_monoxide_CO")
     private Integer carbonMonoxideCO;
 
@@ -49,6 +52,7 @@ public class ChromatographicOilAnalysis {
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "The number of digits before the decimal point should be no more than 10, after less than 2",
             integer = 10, fraction = 2)
+    @JsonProperty("carbon_dioxide_CO2")
     @Column(name = "carbon_dioxide_CO2")
     private Integer carbonDioxideCO2;
 
@@ -56,6 +60,7 @@ public class ChromatographicOilAnalysis {
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "The number of digits before the decimal point should be no more than 10, after less than 2",
             integer = 10, fraction = 2)
+    @JsonProperty("methane_CH4")
     @Column(name = "methane_CH4")
     private Integer methaneCH4;
 
@@ -63,6 +68,7 @@ public class ChromatographicOilAnalysis {
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "The number of digits before the decimal point should be no more than 10, after less than 2",
             integer = 10, fraction = 2)
+    @JsonProperty("ethane_C2H6")
     @Column(name = "ethane_C2H6")
     private Integer ethaneC2H6;
 
@@ -70,6 +76,7 @@ public class ChromatographicOilAnalysis {
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "The number of digits before the decimal point should be no more than 10, after less than 2",
             integer = 10, fraction = 2)
+    @JsonProperty("ethylene_C2H4")
     @Column(name = "ethylene_C2H4")
     private Integer ethyleneC2H4;
 
@@ -77,10 +84,12 @@ public class ChromatographicOilAnalysis {
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "The number of digits before the decimal point should be no more than 10, after less than 2",
             integer = 10, fraction = 2)
+    @JsonProperty("acetylene_C2H2")
     @Column(name = "acetylene_C2H2")
     private Integer acetyleneC2H2;
 
     @Size(max = 40, message = "Should be less than 40 characters")
+    @JsonProperty("protocol_name")
     @Column(name = "protocol_name", length = 40)
     private String protocolName;
 }

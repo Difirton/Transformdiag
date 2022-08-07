@@ -1,51 +1,62 @@
 package com.difirton.transformdiag.util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class DateUtil {
-    private static List<SimpleDateFormat> dateFormats = new ArrayList<SimpleDateFormat>(){
+public final class DateUtil {
+    private static final List<DateTimeFormatter> dateFormats = new ArrayList<>(){
         {
-            add(new SimpleDateFormat("dd.MM.yyyy"));
-            add(new SimpleDateFormat("dd-MM-yyyy"));
-            add(new SimpleDateFormat("dd/MM/yyyy"));
-            add(new SimpleDateFormat("dd.MM.yy"));
-            add(new SimpleDateFormat("dd-MM-yy"));
-            add(new SimpleDateFormat("dd/MM/yy"));
-            add(new SimpleDateFormat("d.MM.yyyy"));
-            add(new SimpleDateFormat("d-MM-yyyy"));
-            add(new SimpleDateFormat("d/MM/yyyy"));
-            add(new SimpleDateFormat("d.MM.yy"));
-            add(new SimpleDateFormat("d-MM-yy"));
-            add(new SimpleDateFormat("d/MM/yy"));
-            add(new SimpleDateFormat("d.M.yyyy"));
-            add(new SimpleDateFormat("d-M-yyyy"));
-            add(new SimpleDateFormat("d/M/yyyy"));
-            add(new SimpleDateFormat("d.M.yy"));
-            add(new SimpleDateFormat("d-M-yy"));
-            add(new SimpleDateFormat("d/M/yy"));
-            add(new SimpleDateFormat("dd.M.yyyy"));
-            add(new SimpleDateFormat("dd-M-yyyy"));
-            add(new SimpleDateFormat("dd/M/yyyy"));
-            add(new SimpleDateFormat("dd.M.yy"));
-            add(new SimpleDateFormat("dd-M-yy"));
-            add(new SimpleDateFormat("dd/M/yy"));
+            add(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            add(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            add(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+            add(DateTimeFormatter.ofPattern("yyyy-MM-d"));
+            add(DateTimeFormatter.ofPattern("yyyy.MM.d"));
+            add(DateTimeFormatter.ofPattern("yyyy/MM/d"));
+            add(DateTimeFormatter.ofPattern("yyyy-M-dd"));
+            add(DateTimeFormatter.ofPattern("yyyy.M.dd"));
+            add(DateTimeFormatter.ofPattern("yyyy/M/dd"));
+            add(DateTimeFormatter.ofPattern("yyyy-M-d"));
+            add(DateTimeFormatter.ofPattern("yyyy/M/d"));
+            add(DateTimeFormatter.ofPattern("yyyy.M.d"));
+            add(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            add(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            add(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            add(DateTimeFormatter.ofPattern("dd.MM.yy"));
+            add(DateTimeFormatter.ofPattern("dd-MM-yy"));
+            add(DateTimeFormatter.ofPattern("dd/MM/yy"));
+            add(DateTimeFormatter.ofPattern("d.MM.yyyy"));
+            add(DateTimeFormatter.ofPattern("d-MM-yyyy"));
+            add(DateTimeFormatter.ofPattern("d/MM/yyyy"));
+            add(DateTimeFormatter.ofPattern("d.MM.yy"));
+            add(DateTimeFormatter.ofPattern("d-MM-yy"));
+            add(DateTimeFormatter.ofPattern("d/MM/yy"));
+            add(DateTimeFormatter.ofPattern("d.M.yyyy"));
+            add(DateTimeFormatter.ofPattern("d-M-yyyy"));
+            add(DateTimeFormatter.ofPattern("d/M/yyyy"));
+            add(DateTimeFormatter.ofPattern("d.M.yy"));
+            add(DateTimeFormatter.ofPattern("d-M-yy"));
+            add(DateTimeFormatter.ofPattern("d/M/yy"));
+            add(DateTimeFormatter.ofPattern("dd.M.yyyy"));
+            add(DateTimeFormatter.ofPattern("dd-M-yyyy"));
+            add(DateTimeFormatter.ofPattern("dd/M/yyyy"));
+            add(DateTimeFormatter.ofPattern("dd.M.yy"));
+            add(DateTimeFormatter.ofPattern("dd-M-yy"));
+            add(DateTimeFormatter.ofPattern("dd/M/yy"));
         }
     };
 
-    public static Date stringToDate(String input) {
+    public static LocalDate stringToDate(String input) {
         if(input == null) {
             return null;
         }
-        Date date = null;
-        for (SimpleDateFormat format : dateFormats) {
+        LocalDate date = null;
+        for (DateTimeFormatter format : dateFormats) {
             try {
-                format.setLenient(false);
-                date = format.parse(input);
-            } catch (ParseException e) { }
+                date = LocalDate.parse(input, format);
+            } catch (DateTimeParseException e) { }
             if (date != null) {
                 break;
             }

@@ -1,4 +1,4 @@
-package com.difirton.transformdiag.entitys;
+package com.difirton.transformdiag.db.entity;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

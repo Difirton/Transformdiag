@@ -1,16 +1,18 @@
-package com.difirton.transformdiag.entitys;
+package com.difirton.transformdiag.db.entity;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Date;
+import java.time.LocalDate;
 
-@Entity
 @Data
 @RequiredArgsConstructor
+@Validated
+@Entity
 @Table(name = "chromatographic_oil_analysis")
 public class ChromatographicOilAnalysis {
     @Id
@@ -18,10 +20,10 @@ public class ChromatographicOilAnalysis {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Temporal(TemporalType.DATE)
+    @PastOrPresent
     @DateTimeFormat(pattern="dd.MM.yyyy")
     @Column(name = "date_analysis")
-    private Date dateAnalysis;
+    private LocalDate dateAnalysis;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transformer")

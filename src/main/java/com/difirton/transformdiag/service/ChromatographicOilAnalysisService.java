@@ -1,11 +1,10 @@
 package com.difirton.transformdiag.service;
 
-import com.difirton.transformdiag.entitys.ChromatographicOilAnalysis;
-import com.difirton.transformdiag.repository.ChromatographicOilAnalysisRepository;
-import com.difirton.transformdiag.repository.TransformerRepository;
+import com.difirton.transformdiag.db.entity.ChromatographicOilAnalysis;
+import com.difirton.transformdiag.db.repository.ChromatographicOilAnalysisRepository;
+import com.difirton.transformdiag.db.repository.TransformerRepository;
 import com.difirton.transformdiag.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,16 +28,17 @@ public class ChromatographicOilAnalysisService {
     public void createChromatographicOilAnalysis(ChromatographicOilAnalysis chromatographicOilAnalysis,
                                                  Long transformerId, String dateAnalysis) {
         chromatographicOilAnalysis.setDateAnalysis(DateUtil.stringToDate(dateAnalysis));
-        chromatographicOilAnalysis.setTransformer(transformerRepository.getById(transformerId));
+        chromatographicOilAnalysis.setTransformer(transformerRepository.findById(transformerId).get());
         chromatographicOilAnalysisRepository.save(chromatographicOilAnalysis);
     }
     
     public ChromatographicOilAnalysis getChromatographicOilAnalysisById(Long id) {
-        return chromatographicOilAnalysisRepository.getById(id);
+        return chromatographicOilAnalysisRepository.findById(id).get();
     }
     
     public void updateChromatographicOilAnalysis(ChromatographicOilAnalysis modifiedAnalysis) {
-        ChromatographicOilAnalysis oldAnalysis = chromatographicOilAnalysisRepository.getById(modifiedAnalysis.getId());
+        ChromatographicOilAnalysis oldAnalysis = chromatographicOilAnalysisRepository
+                .findById(modifiedAnalysis.getId()).get();
         if (modifiedAnalysis.getDateAnalysis() != null ||
                 !modifiedAnalysis.getDateAnalysis().equals(oldAnalysis.getDateAnalysis())) {
             oldAnalysis.setDateAnalysis(modifiedAnalysis.getDateAnalysis());
@@ -79,9 +79,6 @@ public class ChromatographicOilAnalysisService {
     }
 
     public void deleteChromatographicOilAnalysisById(Long id) {
-        try {
-            chromatographicOilAnalysisRepository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {}
+        chromatographicOilAnalysisRepository.deleteById(id);
     }
-
 }

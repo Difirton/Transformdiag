@@ -6,6 +6,7 @@ import com.difirton.transformdiag.db.repository.TransformerCharacteristicsReposi
 import com.difirton.transformdiag.db.repository.TransformerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class TransformerService {
         return transformerRepository.findAll();
     }
 
+    @Transactional
     public Transformer saveTransformer(Transformer transformer, TransformerCharacteristics characteristics) {
         characteristics.setTransformer(transformer);
         transformerCharacteristicsRepository.save(characteristics);
@@ -43,9 +45,8 @@ public class TransformerService {
         transformerRepository.deleteById(id);
     }
 
+    @Transactional
     public Transformer saveTransformer(Transformer transformer) {
-        System.out.println(transformer);
-        System.out.println(transformer.getTransformerCharacteristics());
         transformerCharacteristicsRepository.save(transformer.getTransformerCharacteristics());
         return transformerRepository.save(transformer);
     }

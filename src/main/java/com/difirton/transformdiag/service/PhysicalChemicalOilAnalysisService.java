@@ -6,6 +6,7 @@ import com.difirton.transformdiag.db.repository.TransformerRepository;
 import com.difirton.transformdiag.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,14 +28,13 @@ public class PhysicalChemicalOilAnalysisService {
 
     public void createPhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis,
                                                   Long transformerId, String dateAnalysis) {
-        System.out.println(dateAnalysis);
         physicalChemicalOilAnalysis.setDateAnalysis(DateUtil.stringToDate(dateAnalysis));
         physicalChemicalOilAnalysis.setTransformer(transformerRepository.findById(transformerId).get());
         physicalChemicalOilAnalysisRepository.save(physicalChemicalOilAnalysis);
     }
 
     public PhysicalChemicalOilAnalysis getPhysicalChemicalOilAnalysisById(Long id) {
-        return physicalChemicalOilAnalysisRepository.getById(id);
+        return physicalChemicalOilAnalysisRepository.findById(id).get();
     }
 
     public void updatePhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis modifiedAnalysis) {

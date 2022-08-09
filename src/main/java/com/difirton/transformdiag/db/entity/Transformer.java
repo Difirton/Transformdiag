@@ -28,7 +28,7 @@ public class Transformer {
 
     @Size(max = 20, message = "Should be less than 30 characters")
     @NotBlank(message = "Type should not be empty")
-    @Column(name = "type", length = 20)
+    @Column(name = "TYPE_TRANSFORMER", length = 20)
     private String type;
 
     @Size(max = 20, message = "Should be less than 20 characters")

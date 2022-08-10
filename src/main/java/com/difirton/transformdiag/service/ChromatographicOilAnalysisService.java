@@ -6,6 +6,7 @@ import com.difirton.transformdiag.db.repository.TransformerRepository;
 import com.difirton.transformdiag.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class ChromatographicOilAnalysisService {
     public ChromatographicOilAnalysis getChromatographicOilAnalysisById(Long id) {
         return chromatographicOilAnalysisRepository.findById(id).get();
     }
-    
+
     public void updateChromatographicOilAnalysis(ChromatographicOilAnalysis modifiedAnalysis) {
         ChromatographicOilAnalysis oldAnalysis = chromatographicOilAnalysisRepository
                 .findById(modifiedAnalysis.getId()).get();

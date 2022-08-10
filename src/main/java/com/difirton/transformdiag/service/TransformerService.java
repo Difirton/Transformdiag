@@ -5,6 +5,7 @@ import com.difirton.transformdiag.db.entity.TransformerCharacteristics;
 import com.difirton.transformdiag.db.repository.TransformerCharacteristicsRepository;
 import com.difirton.transformdiag.db.repository.TransformerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,4 +51,6 @@ public class TransformerService {
         transformerCharacteristicsRepository.save(transformer.getTransformerCharacteristics());
         return transformerRepository.save(transformer);
     }
+
+
 }

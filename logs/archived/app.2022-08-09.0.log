@@ -1,0 +1,36 @@
+2022-08-09 21:48:44,335 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 18.0.1.1 on DESKTOP-HI4448S with PID 964 (C:\Users\Dmitriy\dev\Transformdiag\target\classes started by Dmitriy in C:\Users\Dmitriy\dev\Transformdiag)
+2022-08-09 21:48:44,340 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-09 21:48:44,340 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-09 21:48:45,900 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-09 21:48:47,765 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-09 21:48:47,855 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 28 mappings in 'requestMappingHandlerMapping'
+2022-08-09 21:48:48,220 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-09 21:48:48,227 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-09 21:48:48,411 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 4.401 seconds (JVM running for 5.339)
+2022-08-09 21:53:35,542 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 18.0.1.1 on DESKTOP-HI4448S with PID 11888 (C:\Users\Dmitriy\dev\Transformdiag\target\classes started by Dmitriy in C:\Users\Dmitriy\dev\Transformdiag)
+2022-08-09 21:53:35,544 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-09 21:53:35,545 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-09 21:53:36,972 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-09 21:53:38,615 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-09 21:53:38,687 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 28 mappings in 'requestMappingHandlerMapping'
+2022-08-09 21:53:38,984 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-09 21:53:38,991 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-09 21:53:39,211 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 3.958 seconds (JVM running for 4.606)
+2022-08-09 21:54:27,325 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 18.0.1.1 on DESKTOP-HI4448S with PID 14316 (C:\Users\Dmitriy\dev\Transformdiag\target\classes started by Dmitriy in C:\Users\Dmitriy\dev\Transformdiag)
+2022-08-09 21:54:27,328 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-09 21:54:27,328 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-09 21:54:28,595 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-09 21:54:30,220 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-09 21:54:30,293 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 28 mappings in 'requestMappingHandlerMapping'
+2022-08-09 21:54:30,589 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-09 21:54:30,596 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-09 21:54:30,775 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 3.724 seconds (JVM running for 4.358)
+2022-08-09 21:55:44,981 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 18.0.1.1 on DESKTOP-HI4448S with PID 4256 (C:\Users\Dmitriy\dev\Transformdiag\target\classes started by Dmitriy in C:\Users\Dmitriy\dev\Transformdiag)
+2022-08-09 21:55:44,984 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-09 21:55:44,984 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-09 21:55:46,260 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-09 21:55:47,890 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-09 21:55:47,963 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 28 mappings in 'requestMappingHandlerMapping'
+2022-08-09 21:55:48,265 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-09 21:55:48,272 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-09 21:55:48,457 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 3.75 seconds (JVM running for 4.461)

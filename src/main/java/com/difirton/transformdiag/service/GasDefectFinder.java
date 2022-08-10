@@ -13,8 +13,4 @@ public class GasDefectFinder {
         this.transformerUpVoltage = transformerUpVoltage;
         limitGasContent = GasBoundaryConcentration.getGasBoundaryConcentration(transformerUpVoltage);
     }
-
-    boolean checkDefect() {
-
-    }
 }

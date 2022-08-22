@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping(value = "new/transformers",
+@RequestMapping(value = "/v2/transformers",
         consumes = MediaType.ALL_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class TransformerRestController {
@@ -27,8 +27,9 @@ public class TransformerRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public Transformer newTransformer (@Valid @RequestBody Transformer transformer) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Transformer newTransformer(@Valid @RequestBody Transformer transformer) {
+        log.info("Request to create new transformer: " + transformer.toString());
         return transformerService.saveTransformer(transformer);
     }
 
@@ -44,5 +45,17 @@ public class TransformerRestController {
         return transformerService.getTransformerById(id);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public Transformer updateTransformer(@PathVariable("id") Long id, @Valid @RequestBody Transformer transformer) {
+        log.info("Request to update transformer with id = {}, parameters to update: {}", id ,transformer.toString());
+        return transformerService.updateTransformer(id, transformer);
+    }
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public void deleteTransformer(@PathVariable("id") Long id) {
+        log.info("Request to delete transformer with {}, parameters delete", id);
+        transformerService.deleteTransformerById(id);
+    }
 }

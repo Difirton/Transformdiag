@@ -40,7 +40,18 @@ public class TransformerService {
     }
 
     public Transformer getTransformerById(Long id) {
-        return transformerRepository.findById(id).get();
+        return transformerRepository.findById(id).orElseThrow(() -> new TransformerNotFoundException(id));
+    }
+
+    public Transformer updateTransformer(Long id, Transformer transformer) {
+        return transformerRepository.findById(id)
+                .map(t -> {
+                    t.setKKS(transformer.getKKS());
+                    t.setType(transformer.getType());
+                    t.setFactoryNumber(transformer.getFactoryNumber());
+                    return transformerRepository.save(t);
+                })
+                .orElseThrow(() -> new TransformerNotFoundException(id));
     }
 
     public TransformerCharacteristics getTransformerCharacteristicsById(Long id) {

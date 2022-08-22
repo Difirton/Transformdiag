@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/transformers")
+@RequestMapping("/v1/transformers")
 public class TransformerController {
     private TransformerService transformerService;
 

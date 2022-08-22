@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/transformers/{transformerId}/physical-chemical-oil-analyzes")
+@RequestMapping("/v1/transformers/{transformerId}/physical-chemical-oil-analyzes")
 public class PhysicalChemicalOilAnalysisController {
     PhysicalChemicalOilAnalysisService physicalChemicalOilAnalysisService;
     private String date;

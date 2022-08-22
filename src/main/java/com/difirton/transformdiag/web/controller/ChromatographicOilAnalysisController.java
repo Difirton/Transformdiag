@@ -12,7 +12,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping("/transformers/{transformerId}/chromatographic-oil-analyzes")
+@RequestMapping("/v1/transformers/{transformerId}/chromatographic-oil-analyzes")
 public class ChromatographicOilAnalysisController {
     private ChromatographicOilAnalysisService chromatographicOilAnalysisService;
     private String date;

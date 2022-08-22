@@ -4,6 +4,7 @@ import com.difirton.transformdiag.db.entity.Transformer;
 import com.difirton.transformdiag.db.entity.TransformerCharacteristics;
 import com.difirton.transformdiag.db.repository.TransformerCharacteristicsRepository;
 import com.difirton.transformdiag.db.repository.TransformerRepository;
+import com.difirton.transformdiag.error.EmptyListOfAnalysisException;
 import com.difirton.transformdiag.error.TransformerNotFoundException;
 import com.difirton.transformdiag.service.constant.OilGas;
 import com.difirton.transformdiag.service.constant.PhysicalChemicalOilParameter;
@@ -69,7 +70,16 @@ public class TransformerService {
     }
 
     @Transactional
-    public String checkTransformDefects(Long transformerId) {
+    public TransformerDefectDto getTransformDefects(Long transformerId) {
+        TransformerDefectInvestigator transformerDefectInvestigator =
+                new TransformerDefectInvestigator(transformerRepository.findById(transformerId)
+                        .orElseThrow(() -> new TransformerNotFoundException(transformerId)));
+        Optional<TransformerDefectDto> report = transformerDefectInvestigator.checkTransformer();
+        return report.orElseThrow(() -> new EmptyListOfAnalysisException(transformerId));
+    }
+
+    @Transactional
+    public String getReportOfTransformDefects(Long transformerId) {
         TransformerDefectInvestigator transformerDefectInvestigator =
                 new TransformerDefectInvestigator(transformerRepository.findById(transformerId)
                         .orElseThrow(() -> new TransformerNotFoundException(transformerId)));

@@ -80,7 +80,7 @@ public class TransformerController {
     @GetMapping("/{transformerId}/report")
     String getReport(@PathVariable("transformerId") Long transformerId, Model model) {
         model.addAttribute("transformer", transformerService.getTransformerById(transformerId));
-        model.addAttribute("report", transformerService.checkTransformDefects(transformerId));
+        model.addAttribute("report", transformerService.getReportOfTransformDefects(transformerId));
         return "transformers/report";
     }
 }

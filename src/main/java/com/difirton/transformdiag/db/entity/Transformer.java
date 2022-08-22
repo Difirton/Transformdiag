@@ -1,7 +1,6 @@
 package com.difirton.transformdiag.db.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
@@ -14,9 +13,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"transformerCharacteristics", "chromatographicOilAnalysis", "physicalChemicalOilAnalysis"})
+@ToString(exclude = {"transformerCharacteristics", "chromatographicOilAnalyses", "physicalChemicalOilAnalyses"})
 @EqualsAndHashCode(of = {"KKS", "type", "factoryNumber"})
-@JsonIgnoreProperties(value = {"chromatographicOilAnalysis", "physicalChemicalOilAnalysis"})
+@JsonIgnoreProperties(value = {"chromatographicOilAnalyses", "physicalChemicalOilAnalyses"})
 @Validated
 @Entity
 @Table(name = "TRANSFORMERS")

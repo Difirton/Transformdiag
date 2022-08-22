@@ -4,12 +4,17 @@ import com.difirton.transformdiag.db.entity.Transformer;
 import com.difirton.transformdiag.db.entity.TransformerCharacteristics;
 import com.difirton.transformdiag.db.repository.TransformerCharacteristicsRepository;
 import com.difirton.transformdiag.db.repository.TransformerRepository;
+import com.difirton.transformdiag.error.TransformerNotFoundException;
+import com.difirton.transformdiag.service.constant.OilGas;
+import com.difirton.transformdiag.service.constant.PhysicalChemicalOilParameter;
+import com.difirton.transformdiag.service.constant.TypeDefect;
+import com.difirton.transformdiag.service.dto.TransformerDefectDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransformerService {
@@ -52,5 +57,45 @@ public class TransformerService {
         return transformerRepository.save(transformer);
     }
 
+    @Transactional
+    public String checkTransformDefects(Long transformerId) {
+        TransformerDefectInvestigator transformerDefectInvestigator =
+                new TransformerDefectInvestigator(transformerRepository.findById(transformerId)
+                        .orElseThrow(() -> new TransformerNotFoundException(transformerId)));
+        Optional<TransformerDefectDto> report = transformerDefectInvestigator.checkTransformer();
+        if (report.isEmpty()) {
+            return "Transformer performance is normal";
+        } else {
+            return this.generateReport(report.get());
+        }
+    }
 
+    private String generateReport(TransformerDefectDto transformerDefectDto) {
+        StringBuilder sb = new StringBuilder();
+        if (!transformerDefectDto.getGasesOutOfLimit().isEmpty()) {
+            sb.append("It is necessary to degas the oil in the transformer, an excess of the normal gas content in " +
+                    "gases was revealed: ");
+            for (OilGas oilGas : transformerDefectDto.getGasesOutOfLimit()) {
+                sb.append(oilGas);
+                sb.append(", ");
+            }
+        }
+        if (!transformerDefectDto.getDefineOilParameterDefects().isEmpty()) {
+            sb.append("\n It is necessary to replace or treat transformer oil, inappropriate indicators: ");
+            for (PhysicalChemicalOilParameter oilParameter : transformerDefectDto.getDefineOilParameterDefects()) {
+                sb.append(oilParameter);
+                sb.append(", ");
+            }
+        }
+        if (transformerDefectDto.getDefineDefect() != TypeDefect.NORMAL) {
+            sb.append("\n Important! As a result of gas analysis, a defect was detected: ");
+            sb.append(transformerDefectDto.getDefineDefect());
+            if (transformerDefectDto.isDamagedPaperInsulation()) {
+                sb.append("\n Paper insulation hurt");
+            }
+            sb.append("\n The re-extraction of oil must be carried out after ");
+            sb.append(transformerDefectDto.getRecommendedDaysBetweenOilSampling());
+        }
+        return sb.toString();
+    }
 }

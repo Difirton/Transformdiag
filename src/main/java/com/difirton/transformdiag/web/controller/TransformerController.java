@@ -57,8 +57,6 @@ public class TransformerController {
         model.addAttribute("transformer", transformerService.getTransformerById(transformerId));
         model.addAttribute("characteristics", transformerService
                 .getTransformerCharacteristicsById(transformerId));
-        System.out.println(transformerService
-                .getTransformerCharacteristicsById(transformerId));
         return "transformers/edit";
     }
 
@@ -77,5 +75,12 @@ public class TransformerController {
     String deleteTransformer(@PathVariable("id") Long transformerId) {
         transformerService.deleteTransformerById(transformerId);
         return "redirect:/transformers";
+    }
+
+    @GetMapping("/{transformerId}/report")
+    String getReport(@PathVariable("transformerId") Long transformerId, Model model) {
+        model.addAttribute("transformer", transformerService.getTransformerById(transformerId));
+        model.addAttribute("report", transformerService.checkTransformDefects(transformerId));
+        return "transformers/report";
     }
 }

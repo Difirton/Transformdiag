@@ -1,7 +1,6 @@
 package com.difirton.transformdiag.web.restcontroller;
 
 import com.difirton.transformdiag.db.entity.Transformer;
-import com.difirton.transformdiag.db.entity.TransformerCharacteristics;
 import com.difirton.transformdiag.service.TransformerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +43,6 @@ public class TransformerRestController {
     public Transformer findTransformerById(@PathVariable Long id) {
         return transformerService.getTransformerById(id);
     }
+
+
 }

@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 @RequiredArgsConstructor
 @JsonIgnoreProperties(value = "transformer", ignoreUnknown = true)
 @EqualsAndHashCode(exclude = "transformer")
-@Table(name = "TRANSFORMER_CHARACTERISTICS")
+@Table(name = "transformer_characteristics")
 public class TransformerCharacteristics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class TransformerCharacteristics {
     @PositiveOrZero(message = "Should be positive or zero")
     @Digits(message = "The number of digits before the decimal point should be no more than 8",
             integer = 8, fraction = 0)
-    @Column(name = "power", nullable = false)
+    @Column(name = "power",nullable = false)
     private Integer power;
 
     @NotNull(message = "Should not be empty")

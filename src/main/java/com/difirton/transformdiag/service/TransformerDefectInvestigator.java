@@ -3,10 +3,10 @@ package com.difirton.transformdiag.service;
 import com.difirton.transformdiag.db.entity.ChromatographicOilAnalysis;
 import com.difirton.transformdiag.db.entity.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.db.entity.Transformer;
+import com.difirton.transformdiag.db.entity.TransformerStatus;
 import com.difirton.transformdiag.service.constant.OilGas;
 import com.difirton.transformdiag.service.constant.PhysicalChemicalOilParameter;
 import com.difirton.transformdiag.service.constant.TypeDefect;
-import com.difirton.transformdiag.service.dto.TransformerDefectDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +32,7 @@ public class TransformerDefectInvestigator {
         }
     }
 
-    public Optional<TransformerDefectDto> checkTransformer() {
+    public Optional<TransformerStatus> checkTransformer() {
         List<OilGas> gasesDetectedExcess = this.getGasesDetectedExcess();
         List<PhysicalChemicalOilParameter> oilParametersDetectedExcess =
                 this.getPhysicalChemicalOilParametersDetectedExcess();
@@ -87,21 +87,21 @@ public class TransformerDefectInvestigator {
         return 25 * 0.0001 / (((last - previous) * 30) / 6);
     }
 
-    private TransformerDefectDto checkAllDefects(List<OilGas> gasesDetectedExcess,
-                                                 List<PhysicalChemicalOilParameter> oilParametersDetectedExcess) {
-        TransformerDefectDto transformerDefectDto = new TransformerDefectDto(transformer);
+    private TransformerStatus checkAllDefects(List<OilGas> gasesDetectedExcess,
+                                              List<PhysicalChemicalOilParameter> oilParametersDetectedExcess) {
+        TransformerStatus transformerStatus = TransformerStatus.builder().transformer(transformer).build();
         if (!gasesDetectedExcess.isEmpty()) {
-            transformerDefectDto.getGasesOutOfLimit().addAll(gasesDetectedExcess);
+            transformerStatus.setGasesOutOfLimit(gasesDetectedExcess);
         }
         if (!oilParametersDetectedExcess.isEmpty()) {
-            transformerDefectDto.getDefineOilParameterDefects().addAll(oilParametersDetectedExcess);
+            transformerStatus.setDefineOilParameterDefects(oilParametersDetectedExcess);
         }
         ChromatographicOilAnalysis lastAnalysis = chromatographicOilAnalyses.get(chromatographicOilAnalyses.size() - 1);
         TypeDefect defect = new GasDefectFinder(lastAnalysis).detectTypeDefect();
-        transformerDefectDto.setDefineDefect(defect);
-        transformerDefectDto.setDamagedPaperInsulation(this.isDamagedPaperInsulation(lastAnalysis));
-        transformerDefectDto.setRecommendedDaysBetweenOilSampling(recommendedDaysBetweenOilSampling);
-        return transformerDefectDto;
+        transformerStatus.setDefineDefect(defect);
+        transformerStatus.setIsDamagedPaperInsulation(this.isDamagedPaperInsulation(lastAnalysis));
+        transformerStatus.setRecommendedDaysBetweenOilSampling(recommendedDaysBetweenOilSampling);
+        return transformerStatus;
     }
 
     private boolean isDamagedPaperInsulation(ChromatographicOilAnalysis analysis) {

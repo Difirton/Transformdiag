@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class TransformStatus {
+public class TransformerStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

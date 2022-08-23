@@ -367,9 +367,9 @@ java.lang.IllegalArgumentException: Entity must not be null.
 2022-08-23 23:56:20,528 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
 2022-08-23 23:56:20,529 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
 2022-08-23 23:56:22,304 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
-2022-08-23 23:56:23,245 ERROR org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Failed to initialize JPA EntityManagerFactory: Unknown mappedBy in: com.difirton.transformdiag.db.entity.Transformer.transformStatus, referenced property unknown: com.difirton.transformdiag.db.entity.TransformStatus.transformer
+2022-08-23 23:56:23,245 ERROR org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Failed to initialize JPA EntityManagerFactory: Unknown mappedBy in: transformerStatus, referenced property unknown: com.difirton.transformdiag.db.entity.TransformerStatus.transformer
 2022-08-23 23:56:23,310 ERROR org.springframework.boot.SpringApplication [restartedMain] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: Unknown mappedBy in: com.difirton.transformdiag.db.entity.Transformer.transformStatus, referenced property unknown: com.difirton.transformdiag.db.entity.TransformStatus.transformer
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: Unknown mappedBy in: transformerStatus, referenced property unknown: com.difirton.transformdiag.db.entity.TransformerStatus.transformer
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
@@ -390,7 +390,7 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.hibernate.AnnotationException: Unknown mappedBy in: com.difirton.transformdiag.db.entity.Transformer.transformStatus, referenced property unknown: com.difirton.transformdiag.db.entity.TransformStatus.transformer
+Caused by: org.hibernate.AnnotationException: Unknown mappedBy in: transformerStatus, referenced property unknown: com.difirton.transformdiag.db.entity.TransformerStatus.transformer
 	at org.hibernate.cfg.OneToOneSecondPass.doSecondPass(OneToOneSecondPass.java:163)
 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1653)
 	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1629)

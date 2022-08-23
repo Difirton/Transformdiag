@@ -51,6 +51,6 @@ public class Transformer {
 
     @JsonProperty("transformer_status")
     @OneToOne(mappedBy = "transformer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private TransformStatus transformStatus;
+    private TransformerStatus transformerStatus;
 
 }

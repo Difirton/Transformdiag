@@ -1,6 +1,6 @@
-package com.difirton.transformdiag.controller;
+package com.difirton.transformdiag.web.controller;
 
-import com.difirton.transformdiag.entitys.ChromatographicOilAnalysis;
+import com.difirton.transformdiag.db.entity.ChromatographicOilAnalysis;
 import com.difirton.transformdiag.service.ChromatographicOilAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping("/transformers/{transformerId}/chromatographic-oil-analyzes")
+@RequestMapping("/v1/transformers/{transformerId}/chromatographic-oil-analyzes")
 public class ChromatographicOilAnalysisController {
     private ChromatographicOilAnalysisService chromatographicOilAnalysisService;
     private String date;

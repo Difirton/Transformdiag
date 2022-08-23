@@ -27,7 +27,7 @@
         </thead>
         <tbody>
         <tr th:each="analysis : ${analyzes}">
-            <td th:text="${#calendars.format(analysis.getDateAnalysis(),'dd.MM.yyyy')}"/>
+            <td th:text="${analysis.getDateAnalysis()}"/>
             <td th:text="${analysis.getHydrogenGasH2()}"/>
             <td th:text="${analysis.getCarbonMonoxideCO()}"/>
             <td th:text="${analysis.getCarbonDioxideCO2()}"/>

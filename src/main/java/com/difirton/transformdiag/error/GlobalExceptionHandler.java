@@ -7,14 +7,19 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(TransformerNotFoundException.class)
-    public void springHandleNotFound(HttpServletResponse response) throws IOException {
+    public void handleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }
 
     @ExceptionHandler(TransformerUnSupportedFieldPatchException.class)
-    public void springUnSupportedFieldPatch(HttpServletResponse response) throws  IOException {
+    public void unSupportedFieldPatch(HttpServletResponse response) throws  IOException {
         response.sendError(HttpStatus.METHOD_NOT_ALLOWED.value());
+    }
+
+    @ExceptionHandler(EmptyListOfAnalysisException.class)
+    public void badRequest(HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.BAD_REQUEST.value());
     }
 }

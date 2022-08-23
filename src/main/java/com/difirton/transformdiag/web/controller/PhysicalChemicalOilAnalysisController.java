@@ -1,6 +1,6 @@
-package com.difirton.transformdiag.controller;
+package com.difirton.transformdiag.web.controller;
 
-import com.difirton.transformdiag.entitys.PhysicalChemicalOilAnalysis;
+import com.difirton.transformdiag.db.entity.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.service.PhysicalChemicalOilAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/transformers/{transformerId}/physical-chemical-oil-analyzes")
+@RequestMapping("/v1/transformers/{transformerId}/physical-chemical-oil-analyzes")
 public class PhysicalChemicalOilAnalysisController {
     PhysicalChemicalOilAnalysisService physicalChemicalOilAnalysisService;
     private String date;

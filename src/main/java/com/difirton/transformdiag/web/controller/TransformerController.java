@@ -1,7 +1,7 @@
-package com.difirton.transformdiag.controller;
+package com.difirton.transformdiag.web.controller;
 
-import com.difirton.transformdiag.entitys.Transformer;
-import com.difirton.transformdiag.entitys.TransformerCharacteristics;
+import com.difirton.transformdiag.db.entity.Transformer;
+import com.difirton.transformdiag.db.entity.TransformerCharacteristics;
 import com.difirton.transformdiag.service.TransformerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/transformers")
+@RequestMapping("/v1/transformers")
 public class TransformerController {
     private TransformerService transformerService;
 
@@ -75,5 +75,12 @@ public class TransformerController {
     String deleteTransformer(@PathVariable("id") Long transformerId) {
         transformerService.deleteTransformerById(transformerId);
         return "redirect:/transformers";
+    }
+
+    @GetMapping("/{transformerId}/report")
+    String getReport(@PathVariable("transformerId") Long transformerId, Model model) {
+        model.addAttribute("transformer", transformerService.getTransformerById(transformerId));
+        model.addAttribute("report", transformerService.getReportOfTransformDefects(transformerId));
+        return "transformers/report";
     }
 }

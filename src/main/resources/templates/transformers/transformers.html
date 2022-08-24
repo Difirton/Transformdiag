@@ -26,7 +26,7 @@
             <td th:text="${transformer.getFactoryNumber()}"/>
             <td>
                 <div class="col-sm-6 controls">
-                    <a th:href="@{/transformers/{transformerId}(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Выбрать</a>
+                    <a th:href="@{/v1/transformers/{transformerId}(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Выбрать</a>
                 </div>
             </td>
         </tr>

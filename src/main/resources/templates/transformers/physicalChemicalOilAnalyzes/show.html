@@ -36,19 +36,19 @@
             <td th:text="${analysis.getProtocolName()}"/>
             <td>
                 <div class="col-sm-6 controls">
-                    <a th:href="@{/transformers/{transformerId}/physical-chemical-oil-analyzes/{id}/edit(transformerId=${transformerId},id=${analysis.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Изменить</a>
+                    <a th:href="@{/v1/transformers/{transformerId}/physical-chemical-oil-analyzes/{id}/edit(transformerId=${transformerId},id=${analysis.getId()})}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Изменить</a>
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{transformerId}/physical-chemical-oil-analyzes/add(transformerId=${transformerId})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/v1/transformers/{transformerId}/physical-chemical-oil-analyzes/add(transformerId=${transformerId})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Добавить измерение</a>
     </div>
     </br>
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{transformerId}(transformerId=${transformerId})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/v1/transformers/{transformerId}(transformerId=${transformerId})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Назад</a>
     </div>
 </div>

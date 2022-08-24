@@ -63,28 +63,28 @@
     </table>
 
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{transformerId}/chromatographic-oil-analyzes(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/v1/transformers/{transformerId}/chromatographic-oil-analyzes(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Результаты измерения ХАРГ</a>
     </div>
     <br/>
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{transformerId}/physical-chemical-oil-analyzes(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/v1/transformers/{transformerId}/physical-chemical-oil-analyzes(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Результаты измерения ФХА</a>
     </div>
     <br/>
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers/{transformerId}/edit(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
+        <a th:href="@{/v1/transformers/{transformerId}/edit(transformerId=${transformer.getId()})}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Редактировать</a>
     </div>
         <br/>
     <div class="col-sm-6 controls">
-        <form th:method="DELETE" th:action="@{/transformers/{transformerId}(transformerId=${transformer.getId()})}" class="form-horizontal">
+        <form th:method="DELETE" th:action="@{/v1/transformers/{transformerId}(transformerId=${transformer.getId()})}" class="form-horizontal">
             <input type="submit" value="Удалить" class="btn btn-info btn-sm active">
         </form>
     </div>
     <br/>
     <div class="col-sm-6 controls">
-        <a th:href="@{/transformers}" class="btn btn-info btn-sm active"
+        <a th:href="@{/v1/transformers}" class="btn btn-info btn-sm active"
            role="button" aria-pressed="true">Назад</a>
     </div>
 </div>

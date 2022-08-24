@@ -414,3 +414,122 @@ Caused by: org.hibernate.AnnotationException: Unknown mappedBy in: transformerSt
 2022-08-23 23:57:42,925 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
 2022-08-23 23:57:42,932 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
 2022-08-23 23:57:43,137 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 4.546 seconds (JVM running for 5.263)
+2022-08-24 17:10:05,169 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 17.0.4.1 on PC-Home with PID 14760 (C:\Users\Dmitriy Kruglov\dev\Transformdiag\target\classes started by Dmitriy Kruglov in C:\Users\Dmitriy Kruglov\dev\Transformdiag)
+2022-08-24 17:10:05,174 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-24 17:10:05,175 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 17:10:06,457 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-24 17:10:08,352 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-24 17:10:08,433 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 32 mappings in 'requestMappingHandlerMapping'
+2022-08-24 17:10:08,853 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-24 17:10:08,862 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-24 17:10:09,178 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 4.36 seconds (JVM running for 5.668)
+2022-08-24 17:10:57,216 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 17:10:57,216 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2022-08-24 17:10:57,216 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2022-08-24 17:10:57,219 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2022-08-24 17:10:57,221 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@37b83b14
+2022-08-24 17:10:57,221 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@1f32d7da
+2022-08-24 17:10:57,221 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2022-08-24 17:10:57,222 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2022-08-24 17:10:57,236 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] GET "/v1/transformdiag", parameters={}
+2022-08-24 17:10:57,245 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-1] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:10:57,247 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-1] Resource not found
+2022-08-24 17:10:57,248 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed 404 NOT_FOUND
+2022-08-24 17:10:57,250 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:10:57,251 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-1] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2022-08-24 17:10:57,274 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-1] Selected 'text/html' given [text/html, text/html;q=0.8]
+2022-08-24 17:10:57,277 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:10:57,370 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] GET "/favicon.ico", parameters={}
+2022-08-24 17:10:57,370 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-2] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:10:57,372 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-2] Resource not found
+2022-08-24 17:10:57,373 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Completed 404 NOT_FOUND
+2022-08-24 17:10:57,373 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:10:57,375 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-2] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2022-08-24 17:10:57,385 DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor [http-nio-8080-exec-2] Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+2022-08-24 17:10:57,386 DEBUG org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor [http-nio-8080-exec-2] Writing [{timestamp=Wed Aug 24 17:10:57 MSK 2022, status=404, error=Not Found, message=No message available,  (truncated)...]
+2022-08-24 17:10:57,420 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:13:19,752 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-5] GET "/", parameters={}
+2022-08-24 17:13:19,753 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-5] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:13:19,753 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-5] Resource not found
+2022-08-24 17:13:19,753 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-5] Completed 404 NOT_FOUND
+2022-08-24 17:13:19,754 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-5] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:13:19,754 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-5] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2022-08-24 17:13:19,769 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-5] Selected 'text/html' given [text/html, text/html;q=0.8]
+2022-08-24 17:13:19,770 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-5] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:13:27,224 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-6] GET "/v1/transformdiag", parameters={}
+2022-08-24 17:13:27,227 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-6] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:13:27,230 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-6] Resource not found
+2022-08-24 17:13:27,230 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-6] Completed 404 NOT_FOUND
+2022-08-24 17:13:27,230 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-6] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:13:27,230 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-6] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2022-08-24 17:13:27,242 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-6] Selected 'text/html' given [text/html, text/html;q=0.8]
+2022-08-24 17:13:27,243 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-6] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:13:44,679 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-7] GET "/v1/transformers", parameters={}
+2022-08-24 17:13:44,680 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-7] Mapped to com.difirton.transformdiag.web.controller.TransformerController#findAll(Model)
+2022-08-24 17:13:44,797 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-7] Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2022-08-24 17:13:44,981 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-7] Completed 200 OK
+2022-08-24 17:13:47,252 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-8] GET "/transformers/1", parameters={}
+2022-08-24 17:13:47,258 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-8] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:13:47,260 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-8] Resource not found
+2022-08-24 17:13:47,261 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-8] Completed 404 NOT_FOUND
+2022-08-24 17:13:47,261 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-8] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:13:47,262 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-8] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2022-08-24 17:13:47,280 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-8] Selected 'text/html' given [text/html, text/html;q=0.8]
+2022-08-24 17:13:47,280 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-8] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:13:49,985 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-9] GET "/transformers/1", parameters={}
+2022-08-24 17:13:49,986 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-9] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:13:49,988 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-9] Resource not found
+2022-08-24 17:13:49,988 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-9] Completed 404 NOT_FOUND
+2022-08-24 17:13:49,989 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-9] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:13:49,989 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-9] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2022-08-24 17:13:50,001 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-9] Selected 'text/html' given [text/html, text/html;q=0.8]
+2022-08-24 17:13:50,001 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-9] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:13:52,628 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-10] GET "/transformers/add", parameters={}
+2022-08-24 17:13:52,629 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-10] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:13:52,631 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-10] Resource not found
+2022-08-24 17:13:52,632 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-10] Completed 404 NOT_FOUND
+2022-08-24 17:13:52,632 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-10] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:13:52,632 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-10] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2022-08-24 17:13:52,644 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-10] Selected 'text/html' given [text/html, text/html;q=0.8]
+2022-08-24 17:13:52,644 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-10] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:13:55,284 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] GET "/transformers/add", parameters={}
+2022-08-24 17:13:55,285 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [http-nio-8080-exec-1] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2022-08-24 17:13:55,287 DEBUG org.springframework.web.servlet.resource.ResourceHttpRequestHandler [http-nio-8080-exec-1] Resource not found
+2022-08-24 17:13:55,287 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed 404 NOT_FOUND
+2022-08-24 17:13:55,287 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] "ERROR" dispatch for GET "/error", parameters={}
+2022-08-24 17:13:55,289 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-1] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2022-08-24 17:13:55,303 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-1] Selected 'text/html' given [text/html, text/html;q=0.8]
+2022-08-24 17:13:55,303 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Exiting from "ERROR" dispatch, status 404
+2022-08-24 17:17:42,073 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 17.0.4.1 on PC-Home with PID 696 (C:\Users\Dmitriy Kruglov\dev\Transformdiag\target\classes started by Dmitriy Kruglov in C:\Users\Dmitriy Kruglov\dev\Transformdiag)
+2022-08-24 17:17:42,075 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-24 17:17:42,075 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 17:17:43,344 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-24 17:17:45,082 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-24 17:17:45,163 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 32 mappings in 'requestMappingHandlerMapping'
+2022-08-24 17:17:45,502 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-24 17:17:45,509 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-24 17:17:45,691 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 3.905 seconds (JVM running for 4.596)
+2022-08-24 17:17:57,480 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 17:17:57,481 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2022-08-24 17:17:57,481 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2022-08-24 17:17:57,481 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2022-08-24 17:17:57,482 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7874a4d0
+2022-08-24 17:17:57,482 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@43215f80
+2022-08-24 17:17:57,482 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2022-08-24 17:17:57,482 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-08-24 17:17:57,498 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] GET "/v1/transformers", parameters={}
+2022-08-24 17:17:57,502 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-1] Mapped to com.difirton.transformdiag.web.controller.TransformerController#findAll(Model)
+2022-08-24 17:17:57,619 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-1] Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2022-08-24 17:17:57,801 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed 200 OK
+2022-08-24 17:17:59,263 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] GET "/v1/transformers/1", parameters={}
+2022-08-24 17:17:59,265 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-2] Mapped to com.difirton.transformdiag.web.controller.TransformerController#show(Long, Model)
+2022-08-24 17:17:59,307 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-2] Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2022-08-24 17:17:59,329 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Completed 200 OK
+2022-08-24 17:18:02,957 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-3] GET "/v1/transformers/1/chromatographic-oil-analyzes", parameters={}
+2022-08-24 17:18:02,958 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-3] Mapped to com.difirton.transformdiag.web.controller.ChromatographicOilAnalysisController#findAllAnalyzes(Model, Long)
+2022-08-24 17:18:02,974 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-3] Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2022-08-24 17:18:02,986 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-3] Completed 200 OK
+2022-08-24 17:18:10,014 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-4] GET "/v1/transformers/1", parameters={}
+2022-08-24 17:18:10,015 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-4] Mapped to com.difirton.transformdiag.web.controller.TransformerController#show(Long, Model)
+2022-08-24 17:18:10,019 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-4] Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2022-08-24 17:18:10,029 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-4] Completed 200 OK

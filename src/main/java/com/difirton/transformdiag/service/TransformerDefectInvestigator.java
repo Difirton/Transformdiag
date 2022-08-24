@@ -8,9 +8,14 @@ import com.difirton.transformdiag.service.constant.OilGas;
 import com.difirton.transformdiag.service.constant.PhysicalChemicalOilParameter;
 import com.difirton.transformdiag.service.constant.TypeDefect;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import static com.difirton.transformdiag.service.constant.OilGas.*;
 
 public class TransformerDefectInvestigator {
     private final Transformer transformer;
@@ -20,6 +25,14 @@ public class TransformerDefectInvestigator {
     private final int normalDaysBetweenOilSampling;
     private int recommendedDaysBetweenOilSampling;
     private final static double ONE_HUNDRED_TEN_PERCENT = 1.1;
+    private final static int MULTIPLIER_LATEST_MEASUREMENTS = 5;
+    private final static Map<OilGas, Double> LIMIT_DETECTION_DETERMINED_GASES = Map.of(H2, 0.0005,
+                                                                                        CH4, 0.0001,
+                                                                                        C2H4, 0.0001,
+                                                                                        C2H6, 0.0001,
+                                                                                        C2H2, 0.00005,
+                                                                                        CO, 0.002,
+                                                                                        CO2, 0.002);
 
     public TransformerDefectInvestigator(Transformer transformer) {
         this.transformer = transformer;
@@ -36,7 +49,7 @@ public class TransformerDefectInvestigator {
         List<OilGas> gasesDetectedExcess = this.getGasesDetectedExcess();
         List<PhysicalChemicalOilParameter> oilParametersDetectedExcess =
                 this.getPhysicalChemicalOilParametersDetectedExcess();
-        if (gasesDetectedExcess.size() > 1) {
+        if (gasesDetectedExcess.size() > 0) {
             recommendedDaysBetweenOilSampling = (int) Math.ceil(this.getMinimumTimeToReselection());
         } else {
             recommendedDaysBetweenOilSampling = normalDaysBetweenOilSampling;
@@ -75,16 +88,23 @@ public class TransformerDefectInvestigator {
         ChromatographicOilAnalysis lastAnalysis = chromatographicOilAnalyses.get(chromatographicOilAnalyses.size() - 1);
         ChromatographicOilAnalysis previousAnalysis = chromatographicOilAnalyses
                 .get(chromatographicOilAnalyses.size() - 2);
-        List<Double> result = List.of(
-                calculateDaysToReselection(lastAnalysis.getHydrogenGasH2(), previousAnalysis.getHydrogenGasH2()),
-                calculateDaysToReselection(lastAnalysis.getMethaneCH4(), previousAnalysis.getMethaneCH4()),
-                calculateDaysToReselection(lastAnalysis.getEthyleneC2H4(), previousAnalysis.getEthyleneC2H4()),
-                calculateDaysToReselection(lastAnalysis.getEthaneC2H6(), previousAnalysis.getEthaneC2H6()));
-        return result.stream().min(Double::compareTo).get();
+        List<Double> daysToReselectionByEachGas = List.of(
+                calculateDaysToReselection(lastAnalysis.getHydrogenGasH2(), lastAnalysis.getDateAnalysis(),
+                        previousAnalysis.getHydrogenGasH2(), previousAnalysis.getDateAnalysis(), H2),
+                calculateDaysToReselection(lastAnalysis.getMethaneCH4(), lastAnalysis.getDateAnalysis(),
+                        previousAnalysis.getMethaneCH4(), previousAnalysis.getDateAnalysis(), CH4),
+                calculateDaysToReselection(lastAnalysis.getEthyleneC2H4(), lastAnalysis.getDateAnalysis(),
+                        previousAnalysis.getEthyleneC2H4(), previousAnalysis.getDateAnalysis(), C2H4),
+                calculateDaysToReselection(lastAnalysis.getEthaneC2H6(), lastAnalysis.getDateAnalysis(),
+                        previousAnalysis.getEthaneC2H6(), previousAnalysis.getDateAnalysis(), C2H6));
+        return daysToReselectionByEachGas.stream().min(Double::compareTo).get();
     }
 
-    private double calculateDaysToReselection(Integer last, Integer previous) {
-        return 25 * 0.0001 / (((last - previous) * 30) / 6);
+    private double calculateDaysToReselection(Integer lastValue, LocalDate dateLastAnalysis,
+                                        Integer previousValue, LocalDate datePreviousAnalysis, OilGas typeGas) {
+        double gasSlewRate  = (lastValue - previousValue) * 30 /
+                Period.between(datePreviousAnalysis, dateLastAnalysis).getDays();
+        return MULTIPLIER_LATEST_MEASUREMENTS * LIMIT_DETECTION_DETERMINED_GASES.get(typeGas) / gasSlewRate;
     }
 
     private TransformerStatus checkAllDefects(List<OilGas> gasesDetectedExcess,

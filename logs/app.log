@@ -533,3 +533,100 @@ Caused by: org.hibernate.AnnotationException: Unknown mappedBy in: transformerSt
 2022-08-24 17:18:10,015 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-4] Mapped to com.difirton.transformdiag.web.controller.TransformerController#show(Long, Model)
 2022-08-24 17:18:10,019 DEBUG org.springframework.web.servlet.view.ContentNegotiatingViewResolver [http-nio-8080-exec-4] Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
 2022-08-24 17:18:10,029 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-4] Completed 200 OK
+2022-08-24 19:51:47,096 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 17.0.4.1 on PC-Home with PID 6792 (C:\Users\Dmitriy Kruglov\dev\Transformdiag\target\classes started by Dmitriy Kruglov in C:\Users\Dmitriy Kruglov\dev\Transformdiag)
+2022-08-24 19:51:47,099 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-24 19:51:47,100 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 19:51:48,979 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-24 19:51:51,123 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-24 19:51:51,204 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 32 mappings in 'requestMappingHandlerMapping'
+2022-08-24 19:51:51,546 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-24 19:51:51,557 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-24 19:51:51,863 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 5.101 seconds (JVM running for 6.104)
+2022-08-24 19:53:49,295 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 19:53:49,295 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2022-08-24 19:53:49,295 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2022-08-24 19:53:49,295 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2022-08-24 19:53:49,296 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@371e36dc
+2022-08-24 19:53:49,297 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@26321595
+2022-08-24 19:53:49,297 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2022-08-24 19:53:49,297 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2022-08-24 19:53:49,309 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] GET "/v2/transformers/1/report", parameters={}
+2022-08-24 19:53:49,316 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-1] Mapped to com.difirton.transformdiag.web.restcontroller.TransformerRestController#getTransformerReport(Long)
+2022-08-24 19:53:49,415 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json]
+2022-08-24 19:53:49,448 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-1] Writing [com.difirton.transformdiag.web.dto.response.TransformerDefectResponseDto@3bd5854f]
+2022-08-24 19:53:49,462 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed 200 OK
+2022-08-24 19:54:46,384 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 17.0.4.1 on PC-Home with PID 12492 (C:\Users\Dmitriy Kruglov\dev\Transformdiag\target\classes started by Dmitriy Kruglov in C:\Users\Dmitriy Kruglov\dev\Transformdiag)
+2022-08-24 19:54:46,386 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-24 19:54:46,387 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 19:54:48,987 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-24 19:54:52,418 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-24 19:54:52,515 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 32 mappings in 'requestMappingHandlerMapping'
+2022-08-24 19:54:52,822 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-24 19:54:52,829 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-24 19:54:53,067 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 7.11 seconds (JVM running for 8.027)
+2022-08-24 19:54:56,109 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-08-24 19:54:56,110 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected StandardServletMultipartResolver
+2022-08-24 19:54:56,110 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected AcceptHeaderLocaleResolver
+2022-08-24 19:54:56,112 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected FixedThemeResolver
+2022-08-24 19:54:56,113 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@31cb9290
+2022-08-24 19:54:56,113 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.support.SessionFlashMapManager@15d2b637
+2022-08-24 19:54:56,114 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2022-08-24 19:54:56,114 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Completed initialization in 4 ms
+2022-08-24 19:54:56,133 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] GET "/v2/transformers/1/report", parameters={}
+2022-08-24 19:54:56,139 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-2] Mapped to com.difirton.transformdiag.web.restcontroller.TransformerRestController#getTransformerReport(Long)
+2022-08-24 19:54:56,280 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-2] Using 'application/json', given [*/*] and supported [application/json]
+2022-08-24 19:54:56,373 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-2] Writing [com.difirton.transformdiag.web.dto.response.TransformerDefectResponseDto@659b74b2]
+2022-08-24 19:54:56,392 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Completed 200 OK
+2022-08-24 19:56:23,388 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 17.0.4.1 on PC-Home with PID 9840 (C:\Users\Dmitriy Kruglov\dev\Transformdiag\target\classes started by Dmitriy Kruglov in C:\Users\Dmitriy Kruglov\dev\Transformdiag)
+2022-08-24 19:56:23,391 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-24 19:56:23,391 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 19:56:25,700 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-24 19:56:28,630 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-24 19:56:28,717 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 32 mappings in 'requestMappingHandlerMapping'
+2022-08-24 19:56:29,015 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-24 19:56:29,021 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-24 19:56:29,244 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 6.224 seconds (JVM running for 7.197)
+2022-08-24 19:56:49,743 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 17.0.4.1 on PC-Home with PID 7448 (C:\Users\Dmitriy Kruglov\dev\Transformdiag\target\classes started by Dmitriy Kruglov in C:\Users\Dmitriy Kruglov\dev\Transformdiag)
+2022-08-24 19:56:49,745 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-24 19:56:49,746 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 19:56:51,171 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-24 19:56:53,414 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-24 19:56:53,511 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 32 mappings in 'requestMappingHandlerMapping'
+2022-08-24 19:56:53,804 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-24 19:56:53,811 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-24 19:56:54,042 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 4.647 seconds (JVM running for 5.418)
+2022-08-24 19:56:57,174 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-08-24 19:56:57,175 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected StandardServletMultipartResolver
+2022-08-24 19:56:57,175 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected AcceptHeaderLocaleResolver
+2022-08-24 19:56:57,176 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected FixedThemeResolver
+2022-08-24 19:56:57,176 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@e9bc8c4
+2022-08-24 19:56:57,177 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@36f2b9c5
+2022-08-24 19:56:57,177 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2022-08-24 19:56:57,178 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 3 ms
+2022-08-24 19:56:57,199 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] GET "/v2/transformers/1/report", parameters={}
+2022-08-24 19:56:57,207 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-1] Mapped to com.difirton.transformdiag.web.restcontroller.TransformerRestController#getTransformerReport(Long)
+2022-08-24 19:56:57,306 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-1] Using 'application/json', given [*/*] and supported [application/json]
+2022-08-24 19:56:57,338 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-1] Writing [com.difirton.transformdiag.web.dto.response.TransformerDefectResponseDto@74e23d33]
+2022-08-24 19:56:57,354 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed 200 OK
+2022-08-24 19:58:41,006 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Starting TransformdiagApplication using Java 17.0.4.1 on PC-Home with PID 12684 (C:\Users\Dmitriy Kruglov\dev\Transformdiag\target\classes started by Dmitriy Kruglov in C:\Users\Dmitriy Kruglov\dev\Transformdiag)
+2022-08-24 19:58:41,008 DEBUG com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-08-24 19:58:41,009 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-08-24 19:58:42,284 DEBUG org.springframework.web.servlet.resource.ResourceUrlEncodingFilter [restartedMain] Filter 'resourceUrlEncodingFilter' configured for use
+2022-08-24 19:58:43,915 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-08-24 19:58:43,992 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [restartedMain] 32 mappings in 'requestMappingHandlerMapping'
+2022-08-24 19:58:44,247 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-08-24 19:58:44,253 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-08-24 19:58:44,413 INFO com.difirton.transformdiag.starter.TransformdiagApplication [restartedMain] Started TransformdiagApplication in 3.674 seconds (JVM running for 4.317)
+2022-08-24 19:58:47,341 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-08-24 19:58:47,342 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected StandardServletMultipartResolver
+2022-08-24 19:58:47,343 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected AcceptHeaderLocaleResolver
+2022-08-24 19:58:47,343 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected FixedThemeResolver
+2022-08-24 19:58:47,343 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@e9bc8c4
+2022-08-24 19:58:47,344 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Detected org.springframework.web.servlet.support.SessionFlashMapManager@43f6df45
+2022-08-24 19:58:47,344 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2022-08-24 19:58:47,344 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Completed initialization in 2 ms
+2022-08-24 19:58:47,361 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] GET "/v2/transformers/1/report", parameters={}
+2022-08-24 19:58:47,370 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [http-nio-8080-exec-2] Mapped to com.difirton.transformdiag.web.restcontroller.TransformerRestController#getTransformerReport(Long)
+2022-08-24 19:58:47,448 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-2] Using 'application/json', given [*/*] and supported [application/json]
+2022-08-24 19:58:47,474 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor [http-nio-8080-exec-2] Writing [com.difirton.transformdiag.web.dto.response.TransformerDefectResponseDto@51a5ecf9]
+2022-08-24 19:58:47,486 DEBUG org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] Completed 200 OK

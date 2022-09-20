@@ -7,12 +7,13 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(value = "transformer", ignoreUnknown = true)
 @EqualsAndHashCode(exclude = "transformer")
+@Builder
+@Entity(name = "transformer_characteristics")
 @Table(name = "transformer_characteristics")
 public class TransformerCharacteristics {
     @Id

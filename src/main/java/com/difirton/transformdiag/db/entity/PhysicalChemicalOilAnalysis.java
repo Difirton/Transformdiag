@@ -13,9 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = {"transformer"})
-@Validated
+@Builder
 @Entity
-@Table(name = "PHYSICAL_CHEMICAL_OIL_ANALYSIS")
+@Table(name = "physical_chemical_oil_analyzes")
 public class PhysicalChemicalOilAnalysis {
 
     @Id

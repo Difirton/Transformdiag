@@ -16,9 +16,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @JsonIgnoreProperties(value = "transformer", ignoreUnknown = true)
 @EqualsAndHashCode(exclude = "transformer")
+@Builder
 @Entity
 @Table(name = "transformer_status")
 public class TransformerStatus {

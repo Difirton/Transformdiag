@@ -15,9 +15,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString(exclude = {"transformer"})
 @JsonIgnoreProperties(value = {"transformer"})
-@Validated
+@Builder
 @Entity
-@Table(name = "CHROMATOGRAPHIC_OIL_ANALYSIS")
+@Table(name = "chromatographic_oil_analyzes")
 public class ChromatographicOilAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

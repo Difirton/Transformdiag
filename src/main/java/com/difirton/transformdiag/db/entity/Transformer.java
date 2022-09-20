@@ -16,9 +16,9 @@ import java.util.List;
 @ToString(exclude = {"transformerCharacteristics", "chromatographicOilAnalyses", "physicalChemicalOilAnalyses"})
 @EqualsAndHashCode(of = {"KKS", "type", "factoryNumber"})
 @JsonIgnoreProperties(value = {"chromatographicOilAnalyses", "physicalChemicalOilAnalyses"})
-@Validated
+@Builder
 @Entity
-@Table(name = "TRANSFORMERS")
+@Table(name = "transformers")
 public class Transformer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,10 +44,12 @@ public class Transformer {
     private TransformerCharacteristics transformerCharacteristics;
 
     @JsonProperty("chromatographic_oil_analyses")
+    @Builder.Default
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ChromatographicOilAnalysis> chromatographicOilAnalyses = new ArrayList<>();
 
     @JsonProperty("physical_chemical_oil_analyses")
+    @Builder.Default
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PhysicalChemicalOilAnalysis> physicalChemicalOilAnalyses = new ArrayList<>();
 

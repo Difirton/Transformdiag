@@ -80,7 +80,7 @@ public class GasDefectFinder {
             result.put(PD_LOW_DENSITY, result.getOrDefault(PD_LOW_DENSITY, 0) + 1);
             result.put(PD_HIGH_DENSITY, result.getOrDefault(PD_HIGH_DENSITY, 0) + 1);
         }
-        if (gasRatios.get(NUMBER_COLUMN_CH4_H2) > 0.08 && gasRatios.get(0) < 1.2 ) {
+        if (gasRatios.get(NUMBER_COLUMN_CH4_H2) > 0.08 && gasRatios.get(NUMBER_COLUMN_CH4_H2) < 1.2 ) {
             result.put(NORMAL, result.getOrDefault(NORMAL, 0) + 1);
             result.put(DISCHARGE_HIGH_POWER, result.getOrDefault(DISCHARGE_HIGH_POWER, 0) + 1);
             result.put(THERMAL_DEFECT_LOW, result.getOrDefault(THERMAL_DEFECT_LOW, 0) + 1);
@@ -100,12 +100,12 @@ public class GasDefectFinder {
             result.put(DISCHARGE_HIGH_POWER, result.getOrDefault(DISCHARGE_HIGH_POWER, 0) + 1);
             result.put(THERMAL_DEFECT_MEDIUM, result.getOrDefault(THERMAL_DEFECT_MEDIUM, 0) + 1);
         }
-        if (gasRatios.get(NUMBER_COLUMN_C2H4_C2H6) > 0.8 && gasRatios.get(2) < 3.6) {
+        if (gasRatios.get(NUMBER_COLUMN_C2H4_C2H6) > 0.8 && gasRatios.get(NUMBER_COLUMN_C2H4_C2H6) < 3.6) {
             result.put(PD_LOW_DENSITY, result.getOrDefault(PD_LOW_DENSITY, 0) + 1);
             result.put(THERMAL_DEFECT_LOW, result.getOrDefault(THERMAL_DEFECT_LOW, 0) + 1);
             result.put(THERMAL_DEFECT_MEDIUM, result.getOrDefault(THERMAL_DEFECT_MEDIUM, 0) + 1);
         }
-        if (gasRatios.get(NUMBER_COLUMN_C2H4_C2H6) < 3.6) {
+        if (gasRatios.get(NUMBER_COLUMN_C2H4_C2H6) > 3.6) {
             result.put(DISCHARGE_HIGH_POWER, result.getOrDefault(DISCHARGE_HIGH_POWER, 0) + 1);
             result.put(THERMAL_DEFECT_VERY_HIGH, result.getOrDefault(THERMAL_DEFECT_VERY_HIGH, 0) + 1);
         }

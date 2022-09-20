@@ -43,14 +43,17 @@ public class Transformer {
     @OneToOne(mappedBy = "transformer", cascade = CascadeType.ALL)
     private TransformerCharacteristics transformerCharacteristics;
 
+    @JsonProperty("chromatographic_oil_analyses")
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ChromatographicOilAnalysis> chromatographicOilAnalyses = new ArrayList<>();
 
+    @JsonProperty("physical_chemical_oil_analyses")
     @OneToMany(mappedBy = "transformer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PhysicalChemicalOilAnalysis> physicalChemicalOilAnalyses = new ArrayList<>();
 
     @JsonProperty("transformer_status")
-    @OneToOne(mappedBy = "transformer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_id", referencedColumnName = "id")
     private TransformerStatus transformerStatus;
 
 }

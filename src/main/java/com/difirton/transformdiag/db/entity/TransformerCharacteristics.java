@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 @Entity
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(value = "transformer", ignoreUnknown = true)
 @EqualsAndHashCode(exclude = "transformer")
 @Table(name = "transformer_characteristics")

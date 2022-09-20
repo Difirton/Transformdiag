@@ -4,6 +4,7 @@ import com.difirton.transformdiag.db.entity.ChromatographicOilAnalysis;
 import com.difirton.transformdiag.db.entity.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.db.entity.Transformer;
 import com.difirton.transformdiag.db.entity.TransformerStatus;
+import com.difirton.transformdiag.error.EmptyListOfAnalysisException;
 import com.difirton.transformdiag.service.constant.OilGas;
 import com.difirton.transformdiag.service.constant.PhysicalChemicalOilParameter;
 import com.difirton.transformdiag.service.constant.TypeDefect;
@@ -45,7 +46,7 @@ public class TransformerDefectInvestigator {
         }
     }
 
-    public Optional<TransformerStatus> checkTransformer() {
+    public TransformerStatus checkTransformer() {
         List<OilGas> gasesDetectedExcess = this.getGasesDetectedExcess();
         List<PhysicalChemicalOilParameter> oilParametersDetectedExcess =
                 this.getPhysicalChemicalOilParametersDetectedExcess();
@@ -56,20 +57,22 @@ public class TransformerDefectInvestigator {
         }
         if (gasesDetectedExcess.isEmpty() && oilParametersDetectedExcess.isEmpty() &&
                 ONE_HUNDRED_TEN_PERCENT * recommendedDaysBetweenOilSampling > normalDaysBetweenOilSampling) {
-            return Optional.empty();
+            return TransformerStatus.builder().transformer(transformer)
+                    .defineDefect(TypeDefect.NORMAL)
+                    .recommendedDaysBetweenOilSampling(normalDaysBetweenOilSampling).build();
         } else {
-            return Optional.of(this.checkAllDefects(gasesDetectedExcess, oilParametersDetectedExcess));
+            return this.checkAllDefects(gasesDetectedExcess, oilParametersDetectedExcess);
         }
     }
 
     private List<OilGas> getGasesDetectedExcess() {
         chromatographicOilAnalyses = transformer.getChromatographicOilAnalyses();
-        if (chromatographicOilAnalyses.isEmpty()) {
-            return Collections.emptyList();
-        } else {
+        if (chromatographicOilAnalyses.size() > 1) {
             ChromatographicOilAnalysis lastAnalysis = chromatographicOilAnalyses
                     .get(chromatographicOilAnalyses.size() - 1);
             return oilStandardsComparator.compareWithStandardGasContent(lastAnalysis);
+        } else {
+            throw new EmptyListOfAnalysisException(transformer.getId());
         }
     }
 

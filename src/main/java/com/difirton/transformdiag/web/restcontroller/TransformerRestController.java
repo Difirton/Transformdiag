@@ -66,6 +66,7 @@ public class TransformerRestController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}/report")
     public TransformerDefectResponseDto getTransformerReport(@PathVariable("id") Long id) {
-        return conversionService.convert(transformerService.getTransformDefects(id), TransformerDefectResponseDto.class);
+        return conversionService.convert(transformerService.getCurrentTransformStatus(id),
+                TransformerDefectResponseDto.class);
     }
 }

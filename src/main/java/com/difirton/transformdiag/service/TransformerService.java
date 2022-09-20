@@ -1,15 +1,18 @@
 package com.difirton.transformdiag.service;
 
+import com.difirton.transformdiag.db.entity.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.db.entity.Transformer;
 import com.difirton.transformdiag.db.entity.TransformerCharacteristics;
 import com.difirton.transformdiag.db.entity.TransformerStatus;
-import com.difirton.transformdiag.db.repository.TransformerCharacteristicsRepository;
-import com.difirton.transformdiag.db.repository.TransformerRepository;
+import com.difirton.transformdiag.db.repository.*;
 import com.difirton.transformdiag.error.EmptyListOfAnalysisException;
 import com.difirton.transformdiag.error.TransformerNotFoundException;
 import com.difirton.transformdiag.service.constant.OilGas;
 import com.difirton.transformdiag.service.constant.PhysicalChemicalOilParameter;
 import com.difirton.transformdiag.service.constant.TypeDefect;
+import org.hibernate.Hibernate;
+import org.hibernate.proxy.HibernateProxy;
+import org.hibernate.proxy.LazyInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,12 +24,21 @@ import java.util.Optional;
 public class TransformerService {
     private TransformerRepository transformerRepository;
     private TransformerCharacteristicsRepository transformerCharacteristicsRepository;
+    private TransformerStatusRepository transformerStatusRepository;
+    private ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository;
+    private PhysicalChemicalOilAnalysisRepository physicalChemicalOilAnalysisRepository;
 
     @Autowired
     public TransformerService(TransformerRepository transformerRepository,
-                              TransformerCharacteristicsRepository transformerCharacteristicsRepository) {
+                              TransformerCharacteristicsRepository transformerCharacteristicsRepository,
+                              TransformerStatusRepository transformerStatusRepository,
+                              ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository,
+                              PhysicalChemicalOilAnalysisRepository physicalChemicalOilAnalysisRepository) {
         this.transformerRepository = transformerRepository;
         this.transformerCharacteristicsRepository = transformerCharacteristicsRepository;
+        this.transformerStatusRepository = transformerStatusRepository;
+        this.chromatographicOilAnalysisRepository = chromatographicOilAnalysisRepository;
+        this.physicalChemicalOilAnalysisRepository = physicalChemicalOilAnalysisRepository;
     }
 
     public List<Transformer> getAllTransformer() {
@@ -56,7 +68,7 @@ public class TransformerService {
     }
 
     public TransformerCharacteristics getTransformerCharacteristicsById(Long id) {
-        return transformerCharacteristicsRepository.findByTransformerId(id);
+        return transformerCharacteristicsRepository.findTransformerCharacteristicsByTransformerId(id);
     }
 
     public void deleteTransformerById(Long id) {
@@ -69,13 +81,22 @@ public class TransformerService {
         return transformerRepository.save(transformer);
     }
 
+    public TransformerStatus getCurrentTransformStatus(Long transformerId) {
+        return transformerStatusRepository.findTransformerStatusByTransformerId(transformerId)
+                .orElse(getNewTransformStatus(transformerId));
+    }
+
     @Transactional
-    public TransformerStatus getTransformDefects(Long transformerId) {
-        TransformerDefectInvestigator transformerDefectInvestigator =
-                new TransformerDefectInvestigator(transformerRepository.findById(transformerId)
-                        .orElseThrow(() -> new TransformerNotFoundException(transformerId)));
-        Optional<TransformerStatus> report = transformerDefectInvestigator.checkTransformer();
-        return report.orElseThrow(() -> new EmptyListOfAnalysisException(transformerId));
+    public TransformerStatus getNewTransformStatus(Long transformerId) {
+        Transformer transformer = transformerRepository.findById(transformerId)
+                .orElseThrow(() -> new TransformerNotFoundException(transformerId));
+        transformer.setChromatographicOilAnalyses(chromatographicOilAnalysisRepository
+                .findByTransformerId(transformerId));
+        transformer.setPhysicalChemicalOilAnalyses(physicalChemicalOilAnalysisRepository
+                .findByTransformerId(transformerId));
+        TransformerDefectInvestigator transformerDefectInvestigator = new TransformerDefectInvestigator(transformer);
+        TransformerStatus transformerStatus = transformerDefectInvestigator.checkTransformer();
+        return transformerStatusRepository.save(transformerStatus);
     }
 
     @Transactional
@@ -83,12 +104,8 @@ public class TransformerService {
         TransformerDefectInvestigator transformerDefectInvestigator =
                 new TransformerDefectInvestigator(transformerRepository.findById(transformerId)
                         .orElseThrow(() -> new TransformerNotFoundException(transformerId)));
-        Optional<TransformerStatus> report = transformerDefectInvestigator.checkTransformer();
-        if (report.isEmpty()) {
-            return "Transformer performance is normal";
-        } else {
-            return this.generateReport(report.get());
-        }
+        TransformerStatus report = transformerDefectInvestigator.checkTransformer();
+        return this.generateReport(report);
     }
 
     private String generateReport(TransformerStatus transformerStatus) {

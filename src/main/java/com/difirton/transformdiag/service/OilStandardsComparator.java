@@ -52,7 +52,7 @@ public class OilStandardsComparator {
 
     public List<PhysicalChemicalOilParameter> compareWithStandardOilParameters(PhysicalChemicalOilAnalysis analysis) {
         List<PhysicalChemicalOilParameter> excessOilParameters = new ArrayList<>();
-        if (analysis.getFlashPoint() > limitPhysicalChemicalOilParameter.get(FLASH_POINT)) {
+        if (analysis.getFlashPoint() < limitPhysicalChemicalOilParameter.get(FLASH_POINT)) {
             excessOilParameters.add(FLASH_POINT);
         }
         if (analysis.getAcidNumber() > limitPhysicalChemicalOilParameter.get(ACID_NUMBER)) {
@@ -64,7 +64,7 @@ public class OilStandardsComparator {
         if (analysis.getMoistureContent() > limitPhysicalChemicalOilParameter.get(MOISTURE_CONTENT)) {
             excessOilParameters.add(MOISTURE_CONTENT);
         }
-        if (analysis.getBreakdownVoltage() > limitPhysicalChemicalOilParameter.get(BREAKDOWN_VOLTAGE)) {
+        if (analysis.getBreakdownVoltage() < limitPhysicalChemicalOilParameter.get(BREAKDOWN_VOLTAGE)) {
             excessOilParameters.add(BREAKDOWN_VOLTAGE);
         }
         if (analysis.getDielectricLossTangent() > limitPhysicalChemicalOilParameter.get(DIELECTRIC_LOSS_TANGENT)) {

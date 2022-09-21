@@ -9,21 +9,21 @@ public enum PhysicalChemicalOilLimitValue {
 
     private static final Map<PhysicalChemicalOilParameter, Double> BEFORE_150_KV_OIL_PARAMETER = Map.of(
             FLASH_POINT, 125d,
-            ACID_NUMBER, 0.07,
+            ACID_NUMBER, 0.15,
             CLEANLINESS_CLASS, 10d,
             MOISTURE_CONTENT, 0.002,
             BREAKDOWN_VOLTAGE, 40d,
             DIELECTRIC_LOSS_TANGENT, 12d);
     private static final Map<PhysicalChemicalOilParameter, Double> BETWEEN_150_AND_550_KV_OIL_PARAMETER = Map.of(
             FLASH_POINT, 125d,
-            ACID_NUMBER, 0.07,
+            ACID_NUMBER, 0.15,
             CLEANLINESS_CLASS, 10d,
             MOISTURE_CONTENT, 0.002,
             BREAKDOWN_VOLTAGE, 50d,
             DIELECTRIC_LOSS_TANGENT, 8d);
     private static final Map<PhysicalChemicalOilParameter, Double> AFTER_550_KV_OIL_PARAMETER = Map.of(
             FLASH_POINT, 125d,
-            ACID_NUMBER, 0.07,
+            ACID_NUMBER, 0.15,
             CLEANLINESS_CLASS, 10d,
             MOISTURE_CONTENT, 0.002,
             BREAKDOWN_VOLTAGE, 60d,

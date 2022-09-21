@@ -255,4 +255,94 @@ class GasDefectFinderTest {
         TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
         assertEquals(actual, expected);
     }
+
+    @Test
+    @DisplayName("Тест пример 6 из Приложения 4 РД 153-34 - тест дефекта разряды большой мощности")
+    void testDetectDischargeHighPowerDefect4() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(10000)
+                .upVoltage(110d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТДТГ")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .dateAnalysis(LocalDate.of(2022, 1, 1))
+                .transformer(transformer)
+                .carbonDioxideCO2(4500)
+                .carbonMonoxideCO(400)
+                .methaneCH4(210)
+                .ethyleneC2H4(270)
+                .acetyleneC2H2(1340)
+                .ethaneC2H6(6)
+                .hydrogenGasH2(2000)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    @DisplayName("Тест пример 7 из Приложения 4 РД 153-34 - тест дефекта разряды большой мощности")
+    void testDetectDischargeHighPowerDefect5() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(63000)
+                .upVoltage(110d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТДТН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .dateAnalysis(LocalDate.of(2022, 1, 1))
+                .transformer(transformer)
+                .carbonDioxideCO2(0)
+                .carbonMonoxideCO(0)
+                .methaneCH4(200)
+                .ethyleneC2H4(490)
+                .acetyleneC2H2(13)
+                .ethaneC2H6(90)
+                .hydrogenGasH2(530)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    @DisplayName("Тест пример 8 из Приложения 4 РД 153-34 - тест дефекта разряды большой мощности")
+    void testDetectDischargeHighPowerDefect6() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(400000)
+                .upVoltage(330d)
+                .downVoltage(24d)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТДЦ")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .dateAnalysis(LocalDate.of(2022, 1, 1))
+                .transformer(transformer)
+                .carbonDioxideCO2(0)
+                .carbonMonoxideCO(0)
+                .methaneCH4(250)
+                .ethyleneC2H4(300)
+                .acetyleneC2H2(240)
+                .ethaneC2H6(70)
+                .hydrogenGasH2(2700)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
+        assertEquals(actual, expected);
+    }
 }

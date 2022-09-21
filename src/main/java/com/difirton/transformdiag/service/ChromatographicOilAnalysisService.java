@@ -13,8 +13,8 @@ import java.util.List;
 
 @Service
 public class ChromatographicOilAnalysisService {
-    private ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository;
-    private TransformerRepository transformerRepository;
+    private final ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository;
+    private final TransformerRepository transformerRepository;
     private TransformerService transformerService;
 
     @Autowired

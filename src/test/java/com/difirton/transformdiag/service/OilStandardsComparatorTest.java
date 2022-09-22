@@ -215,4 +215,115 @@ class OilStandardsComparatorTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Тест определения превышния показателей масла для трансформатора до 550кВ, все показатели  норме")
+    void compareWithStandardOilParameters4() {
+        OilStandardsComparator comparator = new OilStandardsComparator(550d);
+        PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis = PhysicalChemicalOilAnalysis.builder()
+                .flashPoint(125d)
+                .acidNumber(0.15)
+                .cleanlinessClass(10)
+                .moistureContent(0.002)
+                .breakdownVoltage(50d)
+                .dielectricLossTangent(8d)
+                .build();
+        List<PhysicalChemicalOilParameter> actual = comparator.
+                compareWithStandardOilParameters(physicalChemicalOilAnalysis);
+        List<PhysicalChemicalOilParameter> expected = List.of();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест определения превышния показателей масла для трансформатора до 550кВ, превышены все показатели")
+    void compareWithStandardOilParameters5() {
+        OilStandardsComparator comparator = new OilStandardsComparator(550d);
+        PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis = PhysicalChemicalOilAnalysis.builder()
+                .flashPoint(124d)
+                .acidNumber(0.16)
+                .cleanlinessClass(11)
+                .moistureContent(0.0021)
+                .breakdownVoltage(49d)
+                .dielectricLossTangent(9d)
+                .build();
+        List<PhysicalChemicalOilParameter> actual = comparator.
+                compareWithStandardOilParameters(physicalChemicalOilAnalysis);
+        List<PhysicalChemicalOilParameter> expected = List.of(FLASH_POINT, ACID_NUMBER, CLEANLINESS_CLASS,
+                MOISTURE_CONTENT, BREAKDOWN_VOLTAGE, DIELECTRIC_LOSS_TANGENT);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест определения превышния показателей масла для трансформатора до 550кВ, превышены 3 показателя")
+    void compareWithStandardOilParameters6() {
+        OilStandardsComparator comparator = new OilStandardsComparator(550d);
+        PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis = PhysicalChemicalOilAnalysis.builder()
+                .flashPoint(140d)
+                .acidNumber(0.1)
+                .cleanlinessClass(10)
+                .moistureContent(0.020)
+                .breakdownVoltage(45d)
+                .dielectricLossTangent(10d)
+                .build();
+        List<PhysicalChemicalOilParameter> actual = comparator.
+                compareWithStandardOilParameters(physicalChemicalOilAnalysis);
+        List<PhysicalChemicalOilParameter> expected = List.of(MOISTURE_CONTENT, BREAKDOWN_VOLTAGE,
+                DIELECTRIC_LOSS_TANGENT);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест определения превышния показателей масла для трансформатора свыше 750кВ, все показатели  норме")
+    void compareWithStandardOilParameters7() {
+        OilStandardsComparator comparator = new OilStandardsComparator(750d);
+        PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis = PhysicalChemicalOilAnalysis.builder()
+                .flashPoint(125d)
+                .acidNumber(0.15)
+                .cleanlinessClass(10)
+                .moistureContent(0.002)
+                .breakdownVoltage(60d)
+                .dielectricLossTangent(3d)
+                .build();
+        List<PhysicalChemicalOilParameter> actual = comparator.
+                compareWithStandardOilParameters(physicalChemicalOilAnalysis);
+        List<PhysicalChemicalOilParameter> expected = List.of();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест определения превышния показателей масла для трансформатора свыше 750кВ, превышены все показатели")
+    void compareWithStandardOilParameters8() {
+        OilStandardsComparator comparator = new OilStandardsComparator(750d);
+        PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis = PhysicalChemicalOilAnalysis.builder()
+                .flashPoint(124d)
+                .acidNumber(0.16)
+                .cleanlinessClass(11)
+                .moistureContent(0.0021)
+                .breakdownVoltage(59d)
+                .dielectricLossTangent(4d)
+                .build();
+        List<PhysicalChemicalOilParameter> actual = comparator.
+                compareWithStandardOilParameters(physicalChemicalOilAnalysis);
+        List<PhysicalChemicalOilParameter> expected = List.of(FLASH_POINT, ACID_NUMBER, CLEANLINESS_CLASS,
+                MOISTURE_CONTENT, BREAKDOWN_VOLTAGE, DIELECTRIC_LOSS_TANGENT);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест определения превышния показателей масла для трансформатора свыше 750кВ, превышены 3 показателя")
+    void compareWithStandardOilParameters9() {
+        OilStandardsComparator comparator = new OilStandardsComparator(750d);
+        PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis = PhysicalChemicalOilAnalysis.builder()
+                .flashPoint(140d)
+                .acidNumber(0.1)
+                .cleanlinessClass(10)
+                .moistureContent(0.020)
+                .breakdownVoltage(55d)
+                .dielectricLossTangent(5d)
+                .build();
+        List<PhysicalChemicalOilParameter> actual = comparator.
+                compareWithStandardOilParameters(physicalChemicalOilAnalysis);
+        List<PhysicalChemicalOilParameter> expected = List.of(MOISTURE_CONTENT, BREAKDOWN_VOLTAGE,
+                DIELECTRIC_LOSS_TANGENT);
+        Assertions.assertEquals(expected, actual);
+    }
 }

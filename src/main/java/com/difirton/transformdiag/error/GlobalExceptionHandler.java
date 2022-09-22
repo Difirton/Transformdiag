@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler({TransformerNotFoundException.class, ChromatographicOilAnalysisNotFoundException.class})
+    @ExceptionHandler({TransformerNotFoundException.class, ChromatographicOilAnalysisNotFoundException.class,
+            PhysicalChemicalOilAnalysisNotFoundException.class})
     public void handleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }

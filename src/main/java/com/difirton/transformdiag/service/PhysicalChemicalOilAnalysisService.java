@@ -3,6 +3,7 @@ package com.difirton.transformdiag.service;
 import com.difirton.transformdiag.db.entity.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.db.repository.PhysicalChemicalOilAnalysisRepository;
 import com.difirton.transformdiag.db.repository.TransformerRepository;
+import com.difirton.transformdiag.error.PhysicalChemicalOilAnalysisNotFoundException;
 import com.difirton.transformdiag.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,17 +29,20 @@ public class PhysicalChemicalOilAnalysisService {
     public void createPhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis physicalChemicalOilAnalysis,
                                                   Long transformerId, String dateAnalysis) {
         physicalChemicalOilAnalysis.setDateAnalysis(DateUtil.stringToDate(dateAnalysis));
-        physicalChemicalOilAnalysis.setTransformer(transformerRepository.findById(transformerId).get());
+        physicalChemicalOilAnalysis.setTransformer(transformerRepository.findById(transformerId)
+                .orElseThrow(() -> new PhysicalChemicalOilAnalysisNotFoundException(transformerId)));
         physicalChemicalOilAnalysisRepository.save(physicalChemicalOilAnalysis);
     }
 
     public PhysicalChemicalOilAnalysis getPhysicalChemicalOilAnalysisById(Long id) {
-        return physicalChemicalOilAnalysisRepository.findById(id).get();
+        return physicalChemicalOilAnalysisRepository.findById(id)
+                .orElseThrow(() -> new PhysicalChemicalOilAnalysisNotFoundException(id));
     }
 
     public void updatePhysicalChemicalOilAnalysis(PhysicalChemicalOilAnalysis modifiedAnalysis) {
         PhysicalChemicalOilAnalysis oldAnalysis = physicalChemicalOilAnalysisRepository
-                .findById(modifiedAnalysis.getId()).get();
+                .findById(modifiedAnalysis.getId())
+                .orElseThrow(() -> new PhysicalChemicalOilAnalysisNotFoundException(modifiedAnalysis.getId()));
         if (modifiedAnalysis.getDateAnalysis() != null ||
                 !modifiedAnalysis.getDateAnalysis().equals(oldAnalysis.getDateAnalysis())) {
             oldAnalysis.setDateAnalysis(modifiedAnalysis.getDateAnalysis());

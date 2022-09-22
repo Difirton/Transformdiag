@@ -7,8 +7,6 @@ import com.difirton.transformdiag.service.constant.TypeDefect;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class GasDefectFinderTest {
@@ -27,7 +25,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(1500)
                 .carbonMonoxideCO(200)
@@ -57,7 +54,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(4500)
                 .carbonMonoxideCO(400)
@@ -87,7 +83,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(1620)
                 .carbonMonoxideCO(50)
@@ -117,7 +112,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(4800)
                 .carbonMonoxideCO(50)
@@ -148,7 +142,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(2400)
                 .carbonMonoxideCO(190)
@@ -179,7 +172,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(1900)
                 .carbonMonoxideCO(160)
@@ -209,7 +201,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(4500)
                 .carbonMonoxideCO(400)
@@ -240,7 +231,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(2700)
                 .carbonMonoxideCO(640)
@@ -270,7 +260,6 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
                 .carbonDioxideCO2(4500)
                 .carbonMonoxideCO(400)
@@ -300,10 +289,7 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
-                .carbonDioxideCO2(0)
-                .carbonMonoxideCO(0)
                 .methaneCH4(200)
                 .ethyleneC2H4(490)
                 .acetyleneC2H2(13)
@@ -330,10 +316,7 @@ class GasDefectFinderTest {
                 .transformerCharacteristics(transformerCharacteristics)
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
-                .dateAnalysis(LocalDate.of(2022, 1, 1))
                 .transformer(transformer)
-                .carbonDioxideCO2(0)
-                .carbonMonoxideCO(0)
                 .methaneCH4(250)
                 .ethyleneC2H4(300)
                 .acetyleneC2H2(240)
@@ -343,6 +326,35 @@ class GasDefectFinderTest {
         GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
         TypeDefect actual = gasDefectFinder.detectTypeDefect();
         TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    @DisplayName("Тест, показания трансофрматора в норме")
+    void testDetectNormal() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(400000)
+                .upVoltage(750d)
+                .downVoltage(20d)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТДЦ")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .carbonDioxideCO2(500)
+                .carbonMonoxideCO(4000)
+                .methaneCH4(20)
+                .ethyleneC2H4(1)
+                .acetyleneC2H2(10)
+                .ethaneC2H6(10)
+                .hydrogenGasH2(30)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.NORMAL;
         assertEquals(actual, expected);
     }
 }

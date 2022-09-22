@@ -11,6 +11,7 @@ import com.difirton.transformdiag.service.constant.TypeDefect;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -26,14 +27,14 @@ public class TransformerDefectInvestigator {
     private final int normalDaysBetweenOilSampling;
     private int recommendedDaysBetweenOilSampling;
     private final static double ONE_HUNDRED_TEN_PERCENT = 1.1;
-    private final static int MULTIPLIER_LATEST_MEASUREMENTS = 5;
-    private final static Map<OilGas, Double> LIMIT_DETECTION_DETERMINED_GASES = Map.of(H2, 0.0005,
-                                                                                        CH4, 0.0001,
-                                                                                        C2H4, 0.0001,
-                                                                                        C2H6, 0.0001,
-                                                                                        C2H2, 0.00005,
-                                                                                        CO, 0.002,
-                                                                                        CO2, 0.002);
+    private final static int MULTIPLIER_LATEST_MEASUREMENTS = 50;
+    private final static Map<OilGas, Double> LIMIT_DETECTION_DETERMINED_GASES = Map.of(H2, 5d,
+                                                                                        CH4, 1d,
+                                                                                        C2H4, 1d,
+                                                                                        C2H6, 1d,
+                                                                                        C2H2, 0.5,
+                                                                                        CO, 20d,
+                                                                                        CO2, 20d);
 
     public TransformerDefectInvestigator(Transformer transformer) {
         this.transformer = transformer;
@@ -52,8 +53,9 @@ public class TransformerDefectInvestigator {
                 this.getPhysicalChemicalOilParametersDetectedExcess();
         if (gasesDetectedExcess.size() > 0) {
             recommendedDaysBetweenOilSampling = (int) Math.ceil(this.getMinimumTimeToReselection());
-        } else {
-            recommendedDaysBetweenOilSampling = normalDaysBetweenOilSampling;
+            if (recommendedDaysBetweenOilSampling > normalDaysBetweenOilSampling) {
+                recommendedDaysBetweenOilSampling = normalDaysBetweenOilSampling;
+            }
         }
         if (gasesDetectedExcess.isEmpty() && oilParametersDetectedExcess.isEmpty() &&
                 ONE_HUNDRED_TEN_PERCENT * recommendedDaysBetweenOilSampling > normalDaysBetweenOilSampling) {
@@ -105,8 +107,11 @@ public class TransformerDefectInvestigator {
 
     private double calculateDaysToReselection(Integer lastValue, LocalDate dateLastAnalysis,
                                         Integer previousValue, LocalDate datePreviousAnalysis, OilGas typeGas) {
-        double gasSlewRate  = (lastValue - previousValue) * 30 /
-                Period.between(datePreviousAnalysis, dateLastAnalysis).getDays();
+        double countDaysPeriod = (double) ChronoUnit.DAYS.between(datePreviousAnalysis, dateLastAnalysis);
+        if (countDaysPeriod == 0) {
+            countDaysPeriod = 1;
+        }
+        double gasSlewRate  = (lastValue - previousValue) * 30 / countDaysPeriod;
         return MULTIPLIER_LATEST_MEASUREMENTS * LIMIT_DETECTION_DETERMINED_GASES.get(typeGas) / gasSlewRate;
     }
 
@@ -122,7 +127,11 @@ public class TransformerDefectInvestigator {
         ChromatographicOilAnalysis lastAnalysis = chromatographicOilAnalyses.get(chromatographicOilAnalyses.size() - 1);
         TypeDefect defect = new GasDefectFinder(lastAnalysis).detectTypeDefect();
         transformerStatus.setDefineDefect(defect);
-        transformerStatus.setIsDamagedPaperInsulation(this.isDamagedPaperInsulation(lastAnalysis));
+        if (defect == TypeDefect.NORMAL) {
+            transformerStatus.setIsDamagedPaperInsulation(false);
+        } else {
+            transformerStatus.setIsDamagedPaperInsulation(this.isDamagedPaperInsulation(lastAnalysis));
+        }
         transformerStatus.setRecommendedDaysBetweenOilSampling(recommendedDaysBetweenOilSampling);
         return transformerStatus;
     }

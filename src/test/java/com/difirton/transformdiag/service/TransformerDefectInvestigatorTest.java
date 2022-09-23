@@ -18,7 +18,7 @@ class TransformerDefectInvestigatorTest {
     TransformerDefectInvestigator investigator;
 
     @Test
-    @DisplayName("Тест трансфрматора до 750 кВ с нормальным газосодержанием")
+    @DisplayName("Тест трансформатора до 750 кВ с нормальным газосодержанием")
     void testCheckTransformer() {
         TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
                 .power(400000)
@@ -64,7 +64,7 @@ class TransformerDefectInvestigatorTest {
     }
 
     @Test
-    @DisplayName("Тест трансфрматора до 750 кВ с уменьшенным периодом между отборами")
+    @DisplayName("Тест трансформатора до 750 кВ с уменьшенным периодом между отборами")
     void testCheckTransformer2() {
         TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
                 .power(400000)

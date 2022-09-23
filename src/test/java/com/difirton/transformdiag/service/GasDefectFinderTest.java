@@ -344,8 +344,6 @@ class GasDefectFinderTest {
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
                 .transformer(transformer)
-                .carbonDioxideCO2(500)
-                .carbonMonoxideCO(4000)
                 .methaneCH4(20)
                 .ethyleneC2H4(1)
                 .acetyleneC2H2(10)
@@ -357,4 +355,114 @@ class GasDefectFinderTest {
         TypeDefect expected = TypeDefect.NORMAL;
         assertEquals(actual, expected);
     }
+
+    @Test
+    @DisplayName("Тест, показания трансформатора в частичные разряды с низкой плотностью")
+    void testDetectPdLowDensity() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .methaneCH4(10)
+                .ethyleneC2H4(20)
+                .acetyleneC2H2(1)
+                .ethaneC2H6(80)
+                .hydrogenGasH2(200)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.PD_LOW_DENSITY;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест, показания трансформатора в частичные разряды с высокой плотностью")
+    void testDetectPdHighDensity() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .methaneCH4(15)
+                .ethyleneC2H4(15)
+                .acetyleneC2H2(15)
+                .ethaneC2H6(80)
+                .hydrogenGasH2(200)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.PD_HIGH_DENSITY;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест, показания трансформатора разряды малой мощности")
+    void testDetectDischargeLowPower() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .acetyleneC2H2(1)
+                .ethyleneC2H4(15)
+                .methaneCH4(15)
+                .hydrogenGasH2(30)
+                .ethaneC2H6(8)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.DISCHARGE_LOW_POWER;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест, показания трансформатора разряды большой мощности")
+    void testDetectDischargeHighPower() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .acetyleneC2H2(10)
+                .ethyleneC2H4(15)
+                .methaneCH4(15)
+                .hydrogenGasH2(30)
+                .ethaneC2H6(2)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
+        assertEquals(expected, actual);
+    }
+
+
 }

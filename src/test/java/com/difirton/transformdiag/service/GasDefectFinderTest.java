@@ -41,8 +41,8 @@ class GasDefectFinderTest {
     }
 
     @Test
-    @DisplayName("Тест пример 2 из Приложения 2 РД 153-34 - тест дефекта разряды большой мощности")
-    void testDetectDischargeHighPowerDefect() {
+    @DisplayName("Тест пример 2 из Приложения 2 РД 153-34 - тест дефекта разряды малой мощности")
+    void testDetectDischargeLowPowerDefect() {
         TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
                 .power(10000)
                 .upVoltage(110d)
@@ -65,7 +65,7 @@ class GasDefectFinderTest {
                 .build();
         GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
         TypeDefect actual = gasDefectFinder.detectTypeDefect();
-        TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
+        TypeDefect expected = TypeDefect.DISCHARGE_LOW_POWER;
         assertEquals(actual, expected);
     }
 
@@ -247,8 +247,8 @@ class GasDefectFinderTest {
     }
 
     @Test
-    @DisplayName("Тест пример 6 из Приложения 4 РД 153-34 - тест дефекта разряды большой мощности")
-    void testDetectDischargeHighPowerDefect4() {
+    @DisplayName("Тест пример 6 из Приложения 4 РД 153-34 - тест дефекта разряды малой мощности")
+    void testDetectDischargeLowPowerDefect2() {
         TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
                 .power(10000)
                 .upVoltage(110d)
@@ -271,7 +271,7 @@ class GasDefectFinderTest {
                 .build();
         GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
         TypeDefect actual = gasDefectFinder.detectTypeDefect();
-        TypeDefect expected = TypeDefect.DISCHARGE_HIGH_POWER;
+        TypeDefect expected = TypeDefect.DISCHARGE_LOW_POWER;
         assertEquals(actual, expected);
     }
 
@@ -345,9 +345,9 @@ class GasDefectFinderTest {
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
                 .transformer(transformer)
                 .methaneCH4(20)
-                .ethyleneC2H4(1)
-                .acetyleneC2H2(10)
-                .ethaneC2H6(10)
+                .ethyleneC2H4(14)
+                .acetyleneC2H2(1)
+                .ethaneC2H6(20)
                 .hydrogenGasH2(30)
                 .build();
         GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
@@ -425,7 +425,7 @@ class GasDefectFinderTest {
                 .build();
         ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
                 .transformer(transformer)
-                .acetyleneC2H2(1)
+                .acetyleneC2H2(10)
                 .ethyleneC2H4(15)
                 .methaneCH4(15)
                 .hydrogenGasH2(30)
@@ -464,5 +464,111 @@ class GasDefectFinderTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Тест, показания трансформатора термический дефект низкой температуры")
+    void testDetectThermalDefectLow() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .acetyleneC2H2(1)
+                .ethyleneC2H4(15)
+                .methaneCH4(15)
+                .hydrogenGasH2(30)
+                .ethaneC2H6(9)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.THERMAL_DEFECT_LOW;
+        assertEquals(expected, actual);
+    }
 
+    @Test
+    @DisplayName("Тест, показания трансформатора дефект в диапазоне средних температур")
+    void testDetectThermalDefectMedium() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .acetyleneC2H2(1)
+                .ethyleneC2H4(15)
+                .methaneCH4(15)
+                .hydrogenGasH2(8)
+                .ethaneC2H6(40)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.THERMAL_DEFECT_MEDIUM;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест, показания трансформатора дефект в диапазоне высоких температур")
+    void testDetectThermalDefectHigh() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .acetyleneC2H2(1)
+                .ethyleneC2H4(15)
+                .methaneCH4(15)
+                .hydrogenGasH2(8)
+                .ethaneC2H6(9)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.THERMAL_DEFECT_HIGH;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Тест, показания трансформатора дефект в диапазоне очень высоких температур")
+    void testDetectThermalDefectVeryHigh() {
+        TransformerCharacteristics transformerCharacteristics = TransformerCharacteristics.builder()
+                .power(80000)
+                .upVoltage(330d)
+                .downVoltage(10.5)
+                .numberPhases(3)
+                .build();
+        Transformer transformer = Transformer.builder()
+                .type("ТРДН")
+                .transformerCharacteristics(transformerCharacteristics)
+                .build();
+        ChromatographicOilAnalysis chromatographicOilAnalysis = ChromatographicOilAnalysis.builder()
+                .transformer(transformer)
+                .acetyleneC2H2(1)
+                .ethyleneC2H4(15)
+                .methaneCH4(15)
+                .hydrogenGasH2(8)
+                .ethaneC2H6(2)
+                .build();
+        GasDefectFinder gasDefectFinder = new GasDefectFinder(chromatographicOilAnalysis);
+        TypeDefect actual = gasDefectFinder.detectTypeDefect();
+        TypeDefect expected = TypeDefect.THERMAL_DEFECT_VERY_HIGH;
+        assertEquals(expected, actual);
+    }
 }

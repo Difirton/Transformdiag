@@ -4,18 +4,15 @@ import com.difirton.transformdiag.db.entity.ChromatographicOilAnalysis;
 import com.difirton.transformdiag.db.entity.PhysicalChemicalOilAnalysis;
 import com.difirton.transformdiag.db.entity.Transformer;
 import com.difirton.transformdiag.db.entity.TransformerStatus;
-import com.difirton.transformdiag.error.EmptyListOfAnalysisException;
 import com.difirton.transformdiag.service.constant.OilGas;
 import com.difirton.transformdiag.service.constant.PhysicalChemicalOilParameter;
 import com.difirton.transformdiag.service.constant.TypeDefect;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static com.difirton.transformdiag.service.constant.OilGas.*;
 
@@ -48,34 +45,49 @@ public class TransformerDefectInvestigator {
     }
 
     public TransformerStatus checkTransformer() {
+        if (transformer.getChromatographicOilAnalyses().isEmpty()) {
+            return TransformerStatus.builder()
+                    .transformer(transformer)
+                    .defineDefect(TypeDefect.NORMAL)
+                    .recommendedDaysBetweenOilSampling(normalDaysBetweenOilSampling)
+                    .isDamagedPaperInsulation(false)
+                    .build();
+        }
         List<OilGas> gasesDetectedExcess = this.getGasesDetectedExcess();
         List<PhysicalChemicalOilParameter> oilParametersDetectedExcess =
                 this.getPhysicalChemicalOilParametersDetectedExcess();
-        if (gasesDetectedExcess.size() > 0) {
+        if (transformer.getChromatographicOilAnalyses().size() > 1) {
             recommendedDaysBetweenOilSampling = (int) Math.ceil(this.getMinimumTimeToReselection());
-            if (recommendedDaysBetweenOilSampling > normalDaysBetweenOilSampling) {
-                recommendedDaysBetweenOilSampling = normalDaysBetweenOilSampling;
+            if (gasesDetectedExcess.size() > 1) {
+                if (recommendedDaysBetweenOilSampling > normalDaysBetweenOilSampling) {
+                    recommendedDaysBetweenOilSampling = normalDaysBetweenOilSampling;
+                }
             }
-        }
-        if (gasesDetectedExcess.isEmpty() && oilParametersDetectedExcess.isEmpty() &&
-                ONE_HUNDRED_TEN_PERCENT * recommendedDaysBetweenOilSampling > normalDaysBetweenOilSampling) {
-            return TransformerStatus.builder().transformer(transformer)
-                    .defineDefect(TypeDefect.NORMAL)
-                    .recommendedDaysBetweenOilSampling(normalDaysBetweenOilSampling).build();
+            if (gasesDetectedExcess.isEmpty() && oilParametersDetectedExcess.isEmpty() &&
+                    ONE_HUNDRED_TEN_PERCENT * recommendedDaysBetweenOilSampling > normalDaysBetweenOilSampling) {
+                return TransformerStatus.builder().transformer(transformer)
+                        .defineDefect(TypeDefect.NORMAL)
+                        .recommendedDaysBetweenOilSampling(normalDaysBetweenOilSampling).build();
+            } else {
+                return this.checkAllDefects(gasesDetectedExcess, oilParametersDetectedExcess);
+            }
         } else {
-            return this.checkAllDefects(gasesDetectedExcess, oilParametersDetectedExcess);
+            return TransformerStatus.builder()
+                    .transformer(transformer)
+                    .gasesOutOfLimit(gasesDetectedExcess)
+                    .defineOilParameterDefects(oilParametersDetectedExcess)
+                    .defineDefect(TypeDefect.NORMAL)
+                    .recommendedDaysBetweenOilSampling(normalDaysBetweenOilSampling)
+                    .isDamagedPaperInsulation(false)
+                    .build();
         }
     }
 
     private List<OilGas> getGasesDetectedExcess() {
         chromatographicOilAnalyses = transformer.getChromatographicOilAnalyses();
-        if (chromatographicOilAnalyses.size() > 1) {
-            ChromatographicOilAnalysis lastAnalysis = chromatographicOilAnalyses
-                    .get(chromatographicOilAnalyses.size() - 1);
-            return oilStandardsComparator.compareWithStandardGasContent(lastAnalysis);
-        } else {
-            throw new EmptyListOfAnalysisException(transformer.getId());
-        }
+        ChromatographicOilAnalysis lastAnalysis = chromatographicOilAnalyses
+                .get(chromatographicOilAnalyses.size() - 1);
+        return oilStandardsComparator.compareWithStandardGasContent(lastAnalysis);
     }
 
     private List<PhysicalChemicalOilParameter> getPhysicalChemicalOilParametersDetectedExcess() {
@@ -111,7 +123,7 @@ public class TransformerDefectInvestigator {
         if (countDaysPeriod == 0) {
             countDaysPeriod = 1;
         }
-        double gasSlewRate  = (lastValue - previousValue) * 30 / countDaysPeriod;
+        double gasSlewRate  = Math.abs(lastValue - previousValue) * 30 / countDaysPeriod;
         return MULTIPLIER_LATEST_MEASUREMENTS * LIMIT_DETECTION_DETERMINED_GASES.get(typeGas) / gasSlewRate;
     }
 

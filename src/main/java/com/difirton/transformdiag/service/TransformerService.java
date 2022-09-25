@@ -88,14 +88,24 @@ public class TransformerService {
 
     @Transactional
     public TransformerStatus getNewTransformStatus(Long transformerId) {
+        TransformerStatus transformerStatus;
         Transformer transformer = transformerRepository.findById(transformerId)
                 .orElseThrow(() -> new TransformerNotFoundException(transformerId));
         transformer.setChromatographicOilAnalyses(chromatographicOilAnalysisRepository
                 .findByTransformerId(transformerId));
         transformer.setPhysicalChemicalOilAnalyses(physicalChemicalOilAnalysisRepository
                 .findByTransformerId(transformerId));
-        TransformerDefectInvestigator transformerDefectInvestigator = new TransformerDefectInvestigator(transformer);
-        TransformerStatus transformerStatus = transformerDefectInvestigator.checkTransformer();
+        if (transformer.getChromatographicOilAnalyses().size() > 1){
+            TransformerDefectInvestigator transformerDefectInvestigator = new TransformerDefectInvestigator(transformer);
+            transformerStatus = transformerDefectInvestigator.checkTransformer();
+        } else {
+            transformerStatus = TransformerStatus.builder()
+                    .transformer(transformer)
+                    .defineDefect(TypeDefect.NORMAL)
+                    .isDamagedPaperInsulation(false)
+                    .recommendedDaysBetweenOilSampling(60)
+                    .build();
+        }
         return transformerStatusRepository.save(transformerStatus);
     }
 

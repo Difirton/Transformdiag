@@ -1,4 +1,4 @@
-package com.difirton.transformer.service.constant;
+package com.difirton.investigator.service.constant;
 
 public enum TypeDefect {
     NORMAL,

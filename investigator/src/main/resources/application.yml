@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: investigator
+  data:
+    mongodb:
+      host: "mongoserver.com"
+      port: 27017
+      database: "test"
+      username: "user"
+      password: "secret"

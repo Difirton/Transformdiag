@@ -12,6 +12,7 @@
 
 	<modules>
 		<module>transformer</module>
+		<module>investigator</module>
 	</modules>
 
 	<properties>

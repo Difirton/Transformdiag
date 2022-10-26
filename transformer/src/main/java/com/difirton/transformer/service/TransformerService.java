@@ -2,12 +2,9 @@ package com.difirton.transformer.service;
 
 import com.difirton.transformer.db.entity.Transformer;
 import com.difirton.transformer.db.entity.TransformerCharacteristics;
-import com.difirton.transformer.db.entity.TransformerStatus;
-import com.difirton.transformer.db.repository.*;
+import com.difirton.transformer.db.repository.TransformerCharacteristicsRepository;
+import com.difirton.transformer.db.repository.TransformerRepository;
 import com.difirton.transformer.error.TransformerNotFoundException;
-import com.difirton.transformer.service.constant.OilGas;
-import com.difirton.transformer.service.constant.PhysicalChemicalOilParameter;
-import com.difirton.transformer.service.constant.TypeDefect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,21 +15,12 @@ import java.util.List;
 public class TransformerService {
     private TransformerRepository transformerRepository;
     private TransformerCharacteristicsRepository transformerCharacteristicsRepository;
-    private TransformerStatusRepository transformerStatusRepository;
-    private ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository;
-    private PhysicalChemicalOilAnalysisRepository physicalChemicalOilAnalysisRepository;
 
     @Autowired
     public TransformerService(TransformerRepository transformerRepository,
-                              TransformerCharacteristicsRepository transformerCharacteristicsRepository,
-                              TransformerStatusRepository transformerStatusRepository,
-                              ChromatographicOilAnalysisRepository chromatographicOilAnalysisRepository,
-                              PhysicalChemicalOilAnalysisRepository physicalChemicalOilAnalysisRepository) {
+                              TransformerCharacteristicsRepository transformerCharacteristicsRepository) {
         this.transformerRepository = transformerRepository;
         this.transformerCharacteristicsRepository = transformerCharacteristicsRepository;
-        this.transformerStatusRepository = transformerStatusRepository;
-        this.chromatographicOilAnalysisRepository = chromatographicOilAnalysisRepository;
-        this.physicalChemicalOilAnalysisRepository = physicalChemicalOilAnalysisRepository;
     }
 
     public List<Transformer> getAllTransformer() {
@@ -73,71 +61,5 @@ public class TransformerService {
     public Transformer saveTransformer(Transformer transformer) {
         transformerCharacteristicsRepository.save(transformer.getTransformerCharacteristics());
         return transformerRepository.save(transformer);
-    }
-
-    public TransformerStatus getCurrentTransformStatus(Long transformerId) {
-        return transformerStatusRepository.findTransformerStatusByTransformerId(transformerId)
-                .orElse(getNewTransformStatus(transformerId));
-    }
-
-    @Transactional
-    public TransformerStatus getNewTransformStatus(Long transformerId) {
-        TransformerStatus transformerStatus;
-        Transformer transformer = transformerRepository.findById(transformerId)
-                .orElseThrow(() -> new TransformerNotFoundException(transformerId));
-        transformer.setChromatographicOilAnalyses(chromatographicOilAnalysisRepository
-                .findByTransformerId(transformerId));
-        transformer.setPhysicalChemicalOilAnalyses(physicalChemicalOilAnalysisRepository
-                .findByTransformerId(transformerId));
-        if (transformer.getChromatographicOilAnalyses().size() > 1){
-            TransformerDefectInvestigator transformerDefectInvestigator = new TransformerDefectInvestigator(transformer);
-            transformerStatus = transformerDefectInvestigator.checkTransformer();
-        } else {
-            transformerStatus = TransformerStatus.builder()
-                    .transformer(transformer)
-                    .defineDefect(TypeDefect.NORMAL)
-                    .isDamagedPaperInsulation(false)
-                    .recommendedDaysBetweenOilSampling(60)
-                    .build();
-        }
-        return transformerStatusRepository.save(transformerStatus);
-    }
-
-    @Transactional
-    public String getReportOfTransformDefects(Long transformerId) {
-        TransformerDefectInvestigator transformerDefectInvestigator =
-                new TransformerDefectInvestigator(transformerRepository.findById(transformerId)
-                        .orElseThrow(() -> new TransformerNotFoundException(transformerId)));
-        TransformerStatus report = transformerDefectInvestigator.checkTransformer();
-        return this.generateReport(report);
-    }
-
-    private String generateReport(TransformerStatus transformerStatus) {
-        StringBuilder sb = new StringBuilder();
-        if (!transformerStatus.getGasesOutOfLimit().isEmpty()) {
-            sb.append("It is necessary to degas the oil in the transformer, an excess of the normal gas content in " +
-                    "gases was revealed: ");
-            for (OilGas oilGas : transformerStatus.getGasesOutOfLimit()) {
-                sb.append(oilGas);
-                sb.append(", ");
-            }
-        }
-        if (!transformerStatus.getDefineOilParameterDefects().isEmpty()) {
-            sb.append("\n It is necessary to replace or treat transformer oil, inappropriate indicators: ");
-            for (PhysicalChemicalOilParameter oilParameter : transformerStatus.getDefineOilParameterDefects()) {
-                sb.append(oilParameter);
-                sb.append(", ");
-            }
-        }
-        if (transformerStatus.getDefineDefect() != TypeDefect.NORMAL) {
-            sb.append("\n Important! As a result of gas analysis, a defect was detected: ");
-            sb.append(transformerStatus.getDefineDefect());
-            if (transformerStatus.getIsDamagedPaperInsulation()) {
-                sb.append("\n Paper insulation hurt");
-            }
-            sb.append("\n The re-extraction of oil must be carried out after ");
-            sb.append(transformerStatus.getRecommendedDaysBetweenOilSampling());
-        }
-        return sb.toString();
     }
 }

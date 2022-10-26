@@ -1,12 +1,12 @@
-package com.difirton.transformer.service;
+package com.difirton.investigator.service;
 
-import com.difirton.transformer.service.constant.TypeDefect;
-import com.difirton.transformer.db.entity.ChromatographicOilAnalysis;
+import com.difirton.investigator.service.constant.TypeDefect;
+import com.difirton.investigator.db.entity.ChromatographicOilAnalysis;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.difirton.transformer.service.constant.TypeDefect.*;
+import static com.difirton.investigator.service.constant.TypeDefect.*;
 
 public class GasDefectFinder {
     private static final int NUMBER_COLUMN_C2H2_C2H4 = 0;

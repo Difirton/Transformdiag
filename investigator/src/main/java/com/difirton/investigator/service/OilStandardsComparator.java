@@ -1,18 +1,18 @@
-package com.difirton.transformer.service;
+package com.difirton.investigator.service;
 
-import com.difirton.transformer.db.entity.ChromatographicOilAnalysis;
-import com.difirton.transformer.db.entity.PhysicalChemicalOilAnalysis;
-import com.difirton.transformer.service.constant.GasBoundaryConcentration;
-import com.difirton.transformer.service.constant.OilGas;
-import com.difirton.transformer.service.constant.PhysicalChemicalOilLimitValue;
-import com.difirton.transformer.service.constant.PhysicalChemicalOilParameter;
+import com.difirton.investigator.db.entity.ChromatographicOilAnalysis;
+import com.difirton.investigator.db.entity.PhysicalChemicalOilAnalysis;
+import com.difirton.investigator.service.constant.GasBoundaryConcentration;
+import com.difirton.investigator.service.constant.OilGas;
+import com.difirton.investigator.service.constant.PhysicalChemicalOilLimitValue;
+import com.difirton.investigator.service.constant.PhysicalChemicalOilParameter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.difirton.transformer.service.constant.OilGas.*;
-import static com.difirton.transformer.service.constant.PhysicalChemicalOilParameter.*;
+import static com.difirton.investigator.service.constant.OilGas.*;
+import static com.difirton.investigator.service.constant.PhysicalChemicalOilParameter.*;
 
 public class OilStandardsComparator {
     private final Map<OilGas, Integer> limitGasContent;
